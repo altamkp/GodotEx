@@ -23,8 +23,18 @@ public static class Vector2Extensions {
     }
 
     public static Vector2 Flip(this Vector2 vector) => -vector;
-    public static Vector2 Trim(this Vector2 vector) => new(vector.X.Trim(), vector.Y.Trim());
+    public static Vector2 Trim(this Vector2 vector) => new(MathUtils.Trim(vector.X), MathUtils.Trim(vector.Y));
 
     public static Vector2 DegToRad(this Vector2 vector) => vector * Mathf.Pi / 180f;
     public static Vector2 RadToDeg(this Vector2 vector) => vector * 180f / Mathf.Pi;
+
+    public static bool IsEqualApprox(this Vector2 a, Vector2 b, float precision) {
+        return MathUtils.IsEqualApprox(a.X, b.X, precision) 
+            && MathUtils.IsEqualApprox(a.Y, b.Y, precision);
+    }
+
+    public static bool IsZeroApprox(this Vector2 vector, float precision) {
+        return MathUtils.IsZeroApprox(vector.X, precision) 
+            && MathUtils.IsZeroApprox(vector.Y, precision);
+    }
 }
