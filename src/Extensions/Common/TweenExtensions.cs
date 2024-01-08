@@ -8,7 +8,7 @@ public static class TweenExtensions {
     /// </summary>
     /// <param name="tween">Tween to set.</param>
     /// <returns>Set tween.</returns>
-    public static Tween Default(this Tween tween) => tween.SetParallel().SetEase(Tween.EaseType.InOut).Unscaled();
+    public static Tween Default(this Tween tween) => tween.SetParallel().SetEase(Tween.EaseType.InOut);
 
     /// <summary>
     /// Sets the ease type of <paramref name="tween"/> to <see cref="Tween.EaseType.In"/>.
@@ -136,6 +136,21 @@ public static class TweenExtensions {
     }
 
     /// <summary>
+    /// Creates and appends a PropertyTweener. This method tweens a property of an object between 
+    /// an initial value and finalVal in a span of time equal to duration, in seconds. 
+    /// The initial value by default is the property's value at the time the tweening of the PropertyTweener starts.
+    /// </summary>
+    /// <param name="tween">Tween to use.</param>
+    /// <param name="object">Object to tween.</param>
+    /// <param name="property">Property of the object to tween.</param>
+    /// <param name="finalVal">Tween target.</param>
+    /// <param name="duration">Tween duration.</param>
+    /// <returns>Result property tweener.</returns>
+    public static PropertyTweener TweenProperty(this Tween tween, GodotObject @object, StringName property, Variant finalVal, float duration) {
+        return tween.TweenProperty(@object, property.ToString(), finalVal, duration);
+    }
+
+    /// <summary>
     /// Sets the tween's Unscaled metadata property to <paramref name="unscaled"/>.
     /// When calling any of the asynchronously extension methods, tweens will run
     /// disregarding the engine's current timescale if this property is set to true.
@@ -234,8 +249,10 @@ public static class TweenExtensions {
     }
 
     private static float GetDuration(Tween tween, float duration) {
-        var meta = tween.GetMeta(nameof(Unscaled));
-        return meta.Equals(default(Variant)) ? duration
-            : (float)(duration / (meta.AsBool() ? Engine.TimeScale : 1));
+        if (!tween.HasMethod(nameof(Unscaled))) {
+            return duration;
+        }
+        var unscaled = tween.GetMeta(nameof(Unscaled)).AsBool();
+        return unscaled ? (float)(duration / Engine.TimeScale) : duration;
     }
 }

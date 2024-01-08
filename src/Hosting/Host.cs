@@ -13,16 +13,16 @@ namespace GodotEx.Hosting;
 /// <remarks>NOTE: host nodes can exist any where within the current scene, 
 /// but there may only be at most one autoload host.</remarks>
 public abstract partial class Host : Node {
-    public static Host Instance { get; private set; }
+    public static Host Autoload { get; private set; }
 
     private ServiceProvider _serviceProvider;
 
     public override void _EnterTree() {
         if (GetParent() == GetTree().Root && this != GetTree().CurrentScene) {
-            if (Instance != null) {
+            if (Autoload != null) {
                 throw new InvalidOperationException("Autoload host exists already.");
             }
-            Instance = this;
+            Autoload = this;
         }
 
         var services = new ServiceCollection();
