@@ -1,16 +1,12 @@
 using Godot;
 
-namespace GodotEx.RayCasts;
+namespace GodotEx.Raycasts;
 
-public class RayCastHit {
-    public RayCastHit() { }
-
-    public RayCastHit(Vector3? position,
-                      Vector3? normal,
-                      Node3D? collider,
-                      string? colliderId,
-                      Rid? rid,
-                      int? shape) {
+/// <summary>
+/// A struct that encapsulates raycast result.
+/// </summary>
+public readonly struct RaycastHit {
+    public RaycastHit(Vector3 position, Vector3 normal, Node3D collider, string colliderId, Rid rid, int shape) {
         Position = position;
         Normal = normal;
         Collider = collider;
@@ -19,13 +15,35 @@ public class RayCastHit {
         Shape = shape;
     }
 
-    public Vector3? Position { get; }
-    public Vector3? Normal { get; }
+    /// <summary>
+    /// The intersection point.
+    /// </summary>
+    public Vector3 Position { get; }
 
-    public Node3D? Collider { get; }
-    public string? ColliderId { get; }
+    /// <summary>
+    /// The object's surface normal at the intersection point, or
+    /// <see cref="Vector3.Zero"/> if the  ray starts inside the shape and 
+    /// <see cref="PhysicsRayQueryParameters3D.HitFromInside"/> is true.
+    /// </summary>
+    public Vector3 Normal { get; }
 
-    public Rid? Rid { get; }
+    /// <summary>
+    /// The colliding object.
+    /// </summary>
+    public Node3D Collider { get; }
 
-    public int? Shape { get; }
+    /// <summary>
+    /// The colliding object's ID.
+    /// </summary>
+    public string ColliderId { get; }
+
+    /// <summary>
+    /// The intersecting object's RID.
+    /// </summary>
+    public Rid Rid { get; }
+
+    /// <summary>
+    /// The shape index of the colliding shape.
+    /// </summary>
+    public int Shape { get; }
 }

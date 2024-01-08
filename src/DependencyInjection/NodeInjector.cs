@@ -1,8 +1,9 @@
 using AutoMapper.Internal;
 using Godot;
+using GodotEx.Hosting;
 using System.Reflection;
 
-namespace GodotEx.Hosting;
+namespace GodotEx.DependencyInjection;
 
 [Eager]
 internal class NodeInjector : IDisposable {
