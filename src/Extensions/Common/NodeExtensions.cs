@@ -1,4 +1,5 @@
 using Godot;
+using System.Runtime.CompilerServices;
 
 namespace GodotEx.Extensions;
 
@@ -86,4 +87,11 @@ public static class NodeExtensions {
         }
         return Task.WhenAll(tasks);
     }
+
+    /// <summary>
+    /// Returns the absolute <paramref name="path"/> of the file defining <paramref name="node"/>.
+    /// </summary>
+    /// <param name="node">Node to get path of.</param>
+    /// <returns>Absolute file path defining the node.</returns>
+    public static string GetFilePath(this Node _, [CallerFilePath] string path = "") => path;
 }

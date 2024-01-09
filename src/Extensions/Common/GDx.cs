@@ -22,7 +22,8 @@ public static class GDx {
     /// </summary>
     /// <typeparam name="T">Node type.</typeparam>
     /// <returns>Instantiated node of type <typeparamref name="T"/>.</returns>
-    /// <exception cref="InvalidOperationException"></exception>
+    /// <exception cref="InvalidOperationException"><see cref="ScenePathAttribute"/>
+    /// not defined for type <typeparamref name="T"/>.</exception>
     public static T New<T>() where T : Node {
         var type = typeof(T);
         var attribute = type.GetCustomAttribute<ScenePathAttribute>()
