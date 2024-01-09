@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GodotEx.Raycasts;
+namespace GodotEx.Extensions;
 
 public static class RaycastDictionaryExtensions {
     /// <summary>

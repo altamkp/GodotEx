@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://re1x8ycqpnpo"]
 
 [ext_resource type="Texture2D" uid="uid://c5hqm1x01o0pd" path="res://icon.svg" id="1_mbkvx"]
-[ext_resource type="Script" path="res://Extensions/Instantiation/TestImage.cs" id="2_1uqgq"]
+[ext_resource type="Script" path="res://Extensions/Library/ScenePaths/TestImage.cs" id="2_1uqgq"]
 
 [node name="TextImage" type="TextureRect"]
 anchors_preset = 15

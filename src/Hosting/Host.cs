@@ -1,6 +1,6 @@
 using Godot;
 using GodotEx.DependencyInjection;
-using GodotEx.SingleNodes;
+using GodotEx.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -9,9 +9,18 @@ namespace GodotEx.Hosting;
 /// <summary>
 /// A node that provides hosting service. Override <see cref="ConfigureServices(IServiceCollection)"/>
 /// to configure services added to the internal <see cref="ServiceProvider"/>. 
+/// <br/><br/>
+/// Includes default services, namely:
+/// <br/>Current <see cref="Host"/>
+/// <br/><see cref="SceneTree"/>
+/// <br/><see cref="NodeInjector"/>
+/// <br/><see cref="NodePathResolver"/>
+/// <br/><see cref="SingleNodeManager"/>
 /// </summary>
-/// <remarks>NOTE: host nodes can exist any where within the current scene, 
-/// but there may only be at most one autoload host.</remarks>
+/// <remarks>
+/// <b>Note</b>: host nodes can exist any where within the current scene, 
+/// but there may only be at most one autoload host.
+/// </remarks>
 public abstract partial class Host : Node {
     public static Host Autoload { get; private set; }
 
@@ -89,6 +98,7 @@ public abstract partial class Host : Node {
         services.AddSingleton(GetType(), this);
         services.AddSingleton(GetTree());
         services.AddSingleton<NodeInjector>();
+        services.AddSingleton<NodePathResolver>();
         services.AddSingleton<SingleNodeManager>();
     }
 }

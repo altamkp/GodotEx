@@ -1,4 +1,4 @@
-namespace GodotEx.Raycasts;
+namespace GodotEx.Extensions;
 
 public static class RaycastDef {
     /// <summary>

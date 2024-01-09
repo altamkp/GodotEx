@@ -1,8 +1,8 @@
 using Godot;
 
-namespace GodotEx.SingleNodes;
+namespace GodotEx.Extensions;
 
-public static class SceneTreeExtensions {
+public static class SingleNodeSceneTreeExtensions {
     /// <summary>
     /// Adds <paramref name="node"/> to the scene tree as single node.
     /// </summary>

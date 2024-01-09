@@ -4,9 +4,9 @@ using System.Runtime.CompilerServices;
 namespace GodotEx.Extensions;
 
 /// <summary>
-/// Attribute that is recognized by <see cref="GDx.New{T}()"/>, instantiating the labeled
-/// node type by matching a tscn file with the same name under the same folder as the
-/// current script, or using the path if it is provided.
+/// Attribute that is recognized by <see cref="GDx.New{T}()"/> to instantiate custom 
+/// node type labeled with this attribute by matching a tscn file with the same name 
+/// under the same folder as the current script, or using the path if it is provided.
 /// </summary>
 /// <remarks>
 /// <b>Example 1</b>: 

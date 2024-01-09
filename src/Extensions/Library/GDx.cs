@@ -8,7 +8,7 @@ namespace GodotEx.Extensions;
 /// </summary>
 public static class GDx {
     /// <summary>
-    /// Instantiates node from packed scene using its path.
+    /// Instantiates node from packed scene using its <paramref name="path"/>.
     /// </summary>
     /// <typeparam name="T">Node type.</typeparam>
     /// <param name="path">Packed scene path.</param>
@@ -18,7 +18,9 @@ public static class GDx {
     }
 
     /// <summary>
-    /// Instantiates node from packed scene using its path defined within the <see cref="ScenePathAttribute"/> .
+    /// Instantiates node from packed scene by matching a tscn file with the same name 
+    /// under the same folder as the script defining the target node, or using the path 
+    /// if it is provided. See <see cref="ScenePathAttribute"/>.
     /// </summary>
     /// <typeparam name="T">Node type.</typeparam>
     /// <returns>Instantiated node of type <typeparamref name="T"/>.</returns>
@@ -28,6 +30,6 @@ public static class GDx {
         var type = typeof(T);
         var attribute = type.GetCustomAttribute<ScenePathAttribute>()
             ?? throw new InvalidOperationException($"ScenePath attribute not defined for {type.Name}.");
-        return New<T>(attribute.Path);
+        return GD.Load<PackedScene>(attribute.Path).Instantiate<T>();
     }
 }

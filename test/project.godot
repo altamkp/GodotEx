@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GodotEx.Tests"
-run/main_scene="res://Extensions/Instantiation/InstantiationTest.tscn"
+run/main_scene="res://Extensions/Library/NodePaths/NodePathResolverTest.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 

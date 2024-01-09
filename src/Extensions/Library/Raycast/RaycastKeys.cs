@@ -1,4 +1,4 @@
-namespace GodotEx.Raycasts;
+namespace GodotEx.Extensions;
 
 /// <summary>
 /// Raycast dictionary keys as defined by Godot, see 

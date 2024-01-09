@@ -5,6 +5,10 @@ using System.Reflection;
 
 namespace GodotEx.DependencyInjection;
 
+/// <summary>
+/// Dependency injector for dependencies, both fields and properties, labeled by <see cref="NodePathAttribute"/>.
+/// Configured as singleton service in <see cref="GodotEx.Hosting.Host"/>.
+/// </summary>
 [Eager]
 internal class NodeInjector : IDisposable {
     private readonly SceneTree _sceneTree;

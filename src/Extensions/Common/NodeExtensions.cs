@@ -1,5 +1,4 @@
 using Godot;
-using System.Runtime.CompilerServices;
 
 namespace GodotEx.Extensions;
 
@@ -10,7 +9,7 @@ public static class NodeExtensions {
     /// <typeparam name="T">Target type.</typeparam>
     /// <param name="node">Node to search.</param>
     /// <returns>All children matching <typeparamref name="T"/>.</returns>
-    public static IEnumerable<T> GetChildren<T>(this Node node) {
+    public static IEnumerable<T> GetChildren<T>(this Node node) where T : Node {
         foreach (var child in node.GetChildren()) {
             if (child is T t) {
                 yield return t;
@@ -24,7 +23,7 @@ public static class NodeExtensions {
     /// <typeparam name="T">Target type.</typeparam>
     /// <param name="node">Node to search.</param>
     /// <returns>All children and grandchildren matching <typeparamref name="T"/>.</returns>
-    public static IEnumerable<T> GetAllChildren<T>(this Node node) {
+    public static IEnumerable<T> GetAllChildren<T>(this Node node) where T : Node {
         foreach (var child in node.GetChildren()) {
             if (child is T t) {
                 yield return t;
@@ -33,6 +32,20 @@ public static class NodeExtensions {
                 yield return grandchild;
             }
         }
+    }
+
+    /// <summary>
+    /// Returns ancestor of type <typeparamref name="T"/> of the <paramref name="node"/>, null if not found.
+    /// </summary>
+    /// <typeparam name="T">Target type.</typeparam>
+    /// <param name="node">Node to search.</param>
+    /// <returns>Ancestor node of type <typeparamref name="T"/>, null if not found.</returns>
+    public static T? GetAncestor<T>(this Node node) where T : Node {
+        var parent = node.GetParent();
+        while (parent != null && parent is not T) {
+            parent = parent.GetParent();
+        }
+        return parent as T;
     }
 
     /// <summary>
@@ -87,11 +100,4 @@ public static class NodeExtensions {
         }
         return Task.WhenAll(tasks);
     }
-
-    /// <summary>
-    /// Returns the absolute <paramref name="path"/> of the file defining <paramref name="node"/>.
-    /// </summary>
-    /// <param name="node">Node to get path of.</param>
-    /// <returns>Absolute file path defining the node.</returns>
-    public static string GetFilePath(this Node _, [CallerFilePath] string path = "") => path;
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dklt1c2d6ilfu"]
 
-[ext_resource type="Script" path="res://Extensions/Instantiation/TestLabel.cs" id="1_w0b76"]
+[ext_resource type="Script" path="res://Extensions/Library/ScenePaths/TestLabel.cs" id="1_w0b76"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3mync"]
 font_size = 96

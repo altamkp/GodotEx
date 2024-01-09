@@ -2,11 +2,12 @@ using DotnetEx.Reflections;
 using Godot;
 using GodotEx.Hosting;
 
-namespace GodotEx.SingleNodes;
+namespace GodotEx.Extensions;
 
 /// <summary>
 /// Manager class that adds/removes nodes labeled with <see cref="SingleNodeAttribute"/> 
 /// to/from the scene tree as single nodes as they are added to/removed from the tree.
+/// Configured as singleton service in <see cref="GodotEx.Hosting.Host"/>.
 /// </summary>
 [Eager]
 public class SingleNodeManager : IDisposable {

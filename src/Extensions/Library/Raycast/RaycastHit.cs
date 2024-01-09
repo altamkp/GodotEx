@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GodotEx.Raycasts;
+namespace GodotEx.Extensions;
 
 /// <summary>
 /// A struct that encapsulates raycast result.
