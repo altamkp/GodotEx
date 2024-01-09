@@ -20,7 +20,7 @@
 
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="12.0.1" />
-        <PackageReference Include="DotnetEx" Version="1.0.0.1982" />
+        <PackageReference Include="DotnetEx" Version="1.0.0" />
         <PackageReference Include="GodotSharp" Version="4.2.0" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
     </ItemGroup>
