@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnhpnj7vafo6k"]
-
-[ext_resource type="Script" path="res://Extensions/Library/ScenePaths/InstantiationTest.cs" id="1_hn0lr"]
-
-[node name="InstantiationTest" type="Node"]
-script = ExtResource("1_hn0lr")

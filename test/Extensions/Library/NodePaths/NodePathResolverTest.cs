@@ -15,7 +15,8 @@ public partial class NodePathResolverTest : Node {
     [NodePath]
     private Node _canvasLayer;
 
-    [NodePath] public Label Label { get; set; }
+    [NodePath]
+    public Label Label { get; set; }
 
     public override void _Ready() {
         NodePathResolver.Resolve(this);
