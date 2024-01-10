@@ -20,11 +20,21 @@ namespace GodotEx.Hosting;
 /// but there may only be at most one autoload host.
 /// </remarks>
 public partial class Host : Node {
+    /// <summary>
+    /// Autoload host instance configured in Project Settings.
+    /// </summary>
     public static Host Autoload { get; private set; }
 
     private ServiceProvider _serviceProvider;
 
+    /// <summary>
+    /// Called when the node enters the Godot.SceneTree (e.g. upon instancing, scene
+    /// changing, or after calling <see cref="Node.AddChild(Node, bool, InternalMode)"/>
+    /// in a script). If the node has children, its Godot.Node._EnterTree callback will
+    /// be called first, and then that of the children.
+    /// </summary>
     public override void _EnterTree() {
+        base._EnterTree();
         if (GetParent() == GetTree().Root && this != GetTree().CurrentScene) {
             if (Autoload != null) {
                 throw new InvalidOperationException("Autoload host exists already.");

@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Additional <see cref="Mathf"/> related definitions.
+/// </summary>
 public static class MathfDef {
     /// <summary>
     /// Half Pi, equivalent to 90 degrees.

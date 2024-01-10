@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="Control"/>.
+/// </summary>
 public static class ControlExtensions {
     /// <summary>
     /// Calculates the distance from <paramref name="control"/> to <paramref name="target"/>.

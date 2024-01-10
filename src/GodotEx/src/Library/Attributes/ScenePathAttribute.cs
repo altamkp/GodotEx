@@ -35,6 +35,13 @@ namespace GodotEx;
 public class ScenePathAttribute : Attribute {
     private const string TSCN = ".tscn";
 
+    /// <summary>
+    /// Creates a new <see cref="ScenePathAttribute"/> used with <see cref="GDx.New{T}()"/>
+    /// and similar overloads to instantiate scenes.
+    /// </summary>
+    /// <param name="path">Scene path.</param>
+    /// <param name="scriptPath">Script path.</param>
+    /// <exception cref="InvalidOperationException">Scene file not found.</exception>
     public ScenePathAttribute(string? path = null, [CallerFilePath] string scriptPath = "") {
         if (path == null) {
             scriptPath = ProjectSettings.LocalizePath(scriptPath);
@@ -48,5 +55,8 @@ public class ScenePathAttribute : Attribute {
         }
     }
 
+    /// <summary>
+    /// File path of the scene with the annotated script attached.
+    /// </summary>
     public string Path { get; }
 }

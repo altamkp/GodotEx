@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="Node"/>.
+/// </summary>
 public static class NodeExtensions {
     private const BindingFlags FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 

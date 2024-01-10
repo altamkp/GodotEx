@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="Tween"/>.
+/// </summary>
 public static class TweenExtensions {
     /// <summary>
     /// Sets the tween to a default behaviour of parallel and in-out ease.

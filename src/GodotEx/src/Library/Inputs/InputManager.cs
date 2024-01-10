@@ -1,9 +1,9 @@
 using Godot;
 
-namespace GodotEx.Inputs;
+namespace GodotEx;
 
 /// <summary>
-/// Manager class for registering input events and handling them.
+/// Manager class for registering <see cref="InputEvent"/>s and handling them.
 /// </summary>
 public class InputManager {
     private static readonly Func<InputEvent, bool> TRUE = e => true;
@@ -11,6 +11,11 @@ public class InputManager {
     private readonly Dictionary<string, IInputHandler> _handlers = new();
     private readonly Viewport _viewport;
 
+    /// <summary>
+    /// Instantiates new <see cref="InputManager"/> for registering <see cref="InputEvent"/>s
+    /// and handling them.
+    /// </summary>
+    /// <param name="viewport"></param>
     public InputManager(Viewport viewport) {
         _viewport = viewport;
     }
@@ -24,7 +29,9 @@ public class InputManager {
     /// Adds input handler for InputEventMouseMotion. Since <see cref="InputEventMouseMotion"/> 
     /// does not support action, it should be handled specifically.
     /// </summary>
+    /// <param name="name">Name of the handler.</param>
     /// <param name="handler">Handler to add.</param>
+    /// <param name="pass">Whether the input would be passed to its parent after it has been handled.</param>
     public void AddMouseMotionHandler(string name, Action<InputEventMouseMotion> handler, bool pass = false) {
         if (_handlers.ContainsKey(name)) {
             throw new ArgumentException($"{name} has already been registered.");
@@ -36,8 +43,10 @@ public class InputManager {
     /// Adds input handler for InputEventMouseMotion, Since <see cref="InputEventMouseMotion"/>
     /// does not support action, it should be handled specifically.
     /// </summary>
+    /// <param name="name">Name of the handler.</param>
     /// <param name="predicate"> Predicate if the handler should be used.</param>
     /// <param name="handler"></param>
+    /// <param name="pass">Whether the input would be passed to its parent after it has been handled.</param>
     public void AddMouseMotionHandler(string name, Func<InputEventMouseMotion, bool> predicate, Action<InputEventMouseMotion> handler, bool pass = false) {
         if (_handlers.ContainsKey(name)) {
             throw new ArgumentException($"{name} has already been registered.");
@@ -53,8 +62,9 @@ public class InputManager {
     /// </summary>
     /// <typeparam name="TInputEvent">Type of <see cref="InputEvent"/> to handle.</typeparam>
     /// <param name="name">Name of the handler.</param>
-    /// <param name="@event"><see cref="InputEvent"/> to match.</param>
+    /// <param name="event"><see cref="InputEvent"/> to match.</param>
     /// <param name="handler">Handler to call if input event matches successfully.</param>
+    /// <param name="pass">Whether the input would be passed to its parent after it has been handled.</param>
     /// <exception cref="ArgumentException">If <see cref="InputEvent"/> is <see cref="InputEventMouseMotion"/> or the handler name has already been registered.</exception>
     public void AddHandler<TInputEvent>(string name, TInputEvent @event, Action<TInputEvent> handler, bool pass = false) where TInputEvent : InputEvent {
         if (@event is InputEventMouseMotion) {
@@ -75,17 +85,13 @@ public class InputManager {
     /// </summary>
     /// <typeparam name="TInputEvent">Type of <see cref="InputEvent"/> to handle.</typeparam>
     /// <param name="name">Name of the handler.</param>
-    /// <param name="@event"><see cref="InputEvent"/> to match.</param>
-    /// <param name="matchPressed">Match pressed specified in <paramref name="@event"/> if true, otherwise ignore pressed.</param>
-    /// <param name="matchModifiers">Match modifier specified in <paramref name="@event"/> if true, otherwise ignore all modifiers.</param>
+    /// <param name="event"><see cref="InputEvent"/> to match.</param>
+    /// <param name="matchPressed">Match pressed specified in <paramref name="event"/> if true, otherwise ignore pressed.</param>
+    /// <param name="matchModifiers">Match modifier specified in <paramref name="event"/> if true, otherwise ignore all modifiers.</param>
     /// <param name="handler">Handler to call if input event matches successfully.</param>
+    /// <param name="pass">Whether the input would be passed to its parent after it has been handled.</param>
     /// <exception cref="ArgumentException">If <see cref="InputEvent"/> is <see cref="InputEventMouseMotion"/> or the handler name has already been registered.</exception>
-    public void AddHandler<TInputEvent>(string name,
-                                        TInputEvent @event,
-                                        bool matchPressed,
-                                        bool matchModifiers,
-                                        Action<TInputEvent> handler,
-                                        bool pass = false)
+    public void AddHandler<TInputEvent>(string name, TInputEvent @event, bool matchPressed, bool matchModifiers, Action<TInputEvent> handler, bool pass = false)
             where TInputEvent : InputEvent {
         if (@event is InputEventMouseMotion) {
             throw new ArgumentException($"Use AddMouseMotionInputHandler instead.");
@@ -110,6 +116,7 @@ public class InputManager {
     /// <param name="name">Name of the handler.</param>
     /// <param name="predicate">Predicate which matches event to handle.</param>
     /// <param name="handler">Handler to call if input event matches successfully.</param>
+    /// <param name="pass">Whether the input would be passed to its parent after it has been handled.</param>
     /// <exception cref="ArgumentException">If <see cref="InputEvent"/> is <see cref="InputEventMouseMotion"/> or the handler name has already been registered.</exception>
     public void AddHandler<TInputEvent>(string name, Func<TInputEvent, bool> predicate, Action<TInputEvent> handler, bool pass = false) where TInputEvent : InputEvent {
         if (typeof(TInputEvent) == typeof(InputEventMouseMotion)) {
@@ -145,10 +152,10 @@ public class InputManager {
     }
 
     /// <summary>
-    /// Handles the provided <paramref name="@event"/>. This is normally used within override Godot input methods such as
+    /// Handles the provided <paramref name="event"/>. This is normally used within override Godot input methods such as
     /// <see cref="Node._Input(InputEvent)"/>, <see cref="Node._UnhandledInput(InputEvent)"/>, <see cref="Control._GuiInput(InputEvent)"/> etc.
     /// </summary>
-    /// <param name="@event">Input event to handle.</param>
+    /// <param name="event">Input event to handle.</param>
     public void Handle(InputEvent @event) {
         if (Disabled) {
             return;

@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx.Async;
 
+/// <summary>
+/// Extensions for <see cref="GodotObject"/>.
+/// </summary>
 public static class GodotObjectExtensions {
     /// <summary>
     /// Returns a new <see cref="CancellableSignalAwaiter"/> configured to complete either when the instance source 

@@ -6,7 +6,7 @@ namespace GodotEx;
 /// A struct that encapsulates raycast result.
 /// </summary>
 public readonly struct RaycastHit {
-    public RaycastHit(Vector3 position, Vector3 normal, Node3D collider, string colliderId, Rid rid, int shape) {
+    internal RaycastHit(Vector3 position, Vector3 normal, Node3D collider, string colliderId, Rid rid, int shape) {
         Position = position;
         Normal = normal;
         Collider = collider;

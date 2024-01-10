@@ -11,7 +11,7 @@ public static class GDx {
     /// Instantiates node from packed scene using its <paramref name="path"/>.
     /// </summary>
     /// <param name="path">Packed scene path.</param>
-    /// <returns>Instantiated node of type <typeparamref name="T"/>.</returns>
+    /// <returns>Instantiated node.</returns>
     public static Node New(string path) {
         return GD.Load<PackedScene>(path).Instantiate();
     }
@@ -32,7 +32,7 @@ public static class GDx {
     /// if it is provided. See <see cref="ScenePathAttribute"/>.
     /// </summary>
     /// <param name="type">Node type.</param>
-    /// <returns>Instantiated node of type <typeparamref name="T"/>.</returns>
+    /// <returns>Instantiated node of type <paramref name="type"/>.</returns>
     /// <exception cref="InvalidOperationException"><see cref="ScenePathAttribute"/>
     /// not defined for type <paramref name="type"/>.</exception>
     public static Node New(Type type) {

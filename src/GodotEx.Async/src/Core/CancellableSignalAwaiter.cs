@@ -16,6 +16,11 @@ public class CancellableSignalAwaiter : IAwaiter<Variant[]>, INotifyCompletion, 
     private Action? _continuation;
     private bool _isCancelled;
 
+    /// <summary>
+    /// Creates a new <see cref="CancellableSignalAwaiter"/> that wraps the Godot <see cref="SignalAwaiter"/>.
+    /// </summary>
+    /// <param name="signalAwaiter">Godot <see cref="SignalAwaiter"/>.</param>
+    /// <param name="cancellationToken">Cancellation token for cancellation request.</param>
     public CancellableSignalAwaiter(SignalAwaiter signalAwaiter, CancellationToken cancellationToken) {
         _signalAwaiter = signalAwaiter;
         _cancellationToken = cancellationToken;
@@ -26,15 +31,30 @@ public class CancellableSignalAwaiter : IAwaiter<Variant[]>, INotifyCompletion, 
         });
     }
 
+    /// <summary>
+    /// Completion status of the awaiter. True if canceled or if signal is emitted.
+    /// </summary>
     public bool IsCompleted => _isCancelled || _signalAwaiter.IsCompleted;
 
+    /// <summary>
+    /// Registers action delegate upon completion.
+    /// </summary>
+    /// <param name="continuation">Action delegate up completion.</param>
     public void OnCompleted(Action continuation) {
         _continuation = continuation;
         _signalAwaiter.OnCompleted(OnAwaiterCompleted);
     }
 
+    /// <summary>
+    /// Returns current awaiter as <see cref="IAwaiter"/> that can be used with the await keyword.
+    /// </summary>
+    /// <returns>Current awaiter as <see cref="IAwaiter"/>.</returns>
     public IAwaiter<Variant[]> GetAwaiter() => this;
 
+    /// <summary>
+    /// Returns result upon completion.
+    /// </summary>
+    /// <returns>Result upon completion.</returns>
     public Variant[] GetResult() => _signalAwaiter.GetResult();
 
     private void OnAwaiterCompleted() {

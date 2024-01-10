@@ -3,6 +3,9 @@ using GodotEx;
 
 namespace GodotEx.Hosting;
 
+/// <summary>
+/// Extensions for <see cref="Node"/> related to <see cref="Host"/>.
+/// </summary>
 public static class HostNodeExtensions {
     /// <summary>
     /// Returns the <see cref="Host"/> of the <paramref name="node"/>.

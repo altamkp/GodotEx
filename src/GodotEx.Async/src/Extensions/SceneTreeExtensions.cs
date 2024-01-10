@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx.Async;
 
+/// <summary>
+/// Extensions for <see cref="SceneTree"/>.
+/// </summary>
 public static class SceneTreeExtensions {
     /// <summary>
     /// Returns a <see cref="SignalAwaiter"/> that completes on the next process frame.

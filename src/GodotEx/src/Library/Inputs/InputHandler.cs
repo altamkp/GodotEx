@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GodotEx.Inputs;
+namespace GodotEx;
 
 /// <summary>
 /// Handler class for handling input event of type <typeparamref name="TInputEvent"/>.
@@ -43,9 +43,8 @@ public class InputHandler<TInputEvent> : IInputHandler where TInputEvent : Input
     /// Handles the given input event.
     /// </summary>
     /// <param name="event">Input event to handle.</param>
-    /// <returns>True if successfully handled, other false due to handler being disabled,
-    /// input event type not matching <typeparamref name="TInputEvent"/>, or 
-    /// predicate not satisfied.</returns>
+    /// <returns>True if successfully handled, otherwise false due to handler being disabled, input event 
+    /// type not matching <typeparamref name="TInputEvent"/>, or predicate not satisfied.</returns>
     public bool Handle(InputEvent @event) {
         if (Disabled || @event is not TInputEvent tInputEvent || !_predicate(tInputEvent)) {
             return false;

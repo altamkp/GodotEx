@@ -3,6 +3,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="Basis"/>.
+/// </summary>
 public static class BasisExtensions {
     /// <summary>
     /// Trims basis to a given <paramref name="precision"/>.

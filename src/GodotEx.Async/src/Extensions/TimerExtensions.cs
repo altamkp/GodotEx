@@ -3,6 +3,9 @@ using Timer = Godot.Timer;
 
 namespace GodotEx.Async;
 
+/// <summary>
+/// Extensions for <see cref="Timer"/>.
+/// </summary>
 public static class TimerExtensions {
     /// <summary>
     /// Returns a <see cref="SignalAwaiter"/> that completes on the timer timeout.

@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="Godot.Collections.Dictionary"/> that holds raycast results.
+/// </summary>
 public static class RaycastDictionaryExtensions {
     /// <summary>
     /// Converts and encapsulates the result dictionary obtained with

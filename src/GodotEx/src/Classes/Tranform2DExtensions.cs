@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="Transform2D"/>.
+/// </summary>
 public static class Transform2DExtensions {
     /// <summary>
     /// Returns the unit vector pointing to the right relative to the transform object.

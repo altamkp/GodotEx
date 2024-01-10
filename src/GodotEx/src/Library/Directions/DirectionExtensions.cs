@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="Direction"/>.
+/// </summary>
 public static class DirectionExtensions {
     /// <summary>
     /// Flips direction.
@@ -50,30 +53,6 @@ public static class DirectionExtensions {
             Direction.Forward => Vector3.Forward,
             Direction.Back => Vector3.Back,
             _ => throw new ArgumentException($"Non-existing 3D direction {direction}.")
-        };
-    }
-
-    public static Vector3 ToDirectionVector(this Direction direction, Transform3D transform) {
-        return direction switch {
-            Direction.Right => transform.Right(),
-            Direction.Left => transform.Left(),
-            Direction.Up => transform.Up(),
-            Direction.Down => transform.Down(),
-            Direction.Forward => transform.Forward(),
-            Direction.Back => transform.Back(),
-            _ => throw new ArgumentException($"Non-existing direction {direction}.")
-        };
-    }
-
-    public static (Vector3, float) ToRotationVector(this Direction direction, Transform3D transform) {
-        return direction switch {
-            Direction.Right => (transform.Forward(), MathfDef.HALF_PI),
-            Direction.Left => (transform.Forward(), -MathfDef.HALF_PI),
-            Direction.Up => (transform.Forward(), Mathf.Pi),
-            Direction.Down => (transform.Forward(), 0),
-            Direction.Forward => (transform.Right(), -MathfDef.HALF_PI),
-            Direction.Back => (transform.Right(), MathfDef.HALF_PI),
-            _ => throw new ArgumentException($"Non-existing direction {direction}.")
         };
     }
 }

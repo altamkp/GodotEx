@@ -3,6 +3,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="Vector3"/>.
+/// </summary>
 public static class Vector3Extensions {
     /// <summary>
     /// Sets <paramref name="vector"/>.X to <paramref name="x"/>.
@@ -157,7 +160,7 @@ public static class Vector3Extensions {
     /// </summary>
     /// <param name="vector">Starting position to use.</param>
     /// <param name="target">Target to use.</param>
-    /// <returns>Distance from <paramref name="node"/> to <paramref name="target"/>.</returns>
+    /// <returns>Distance from <paramref name="vector"/> to <paramref name="target"/>.</returns>
     public static float DistanceTo(this Vector3 vector, Node3D target) {
         return vector.DistanceTo(target.GlobalPosition);
     }

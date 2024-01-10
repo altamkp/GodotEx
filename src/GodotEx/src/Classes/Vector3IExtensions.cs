@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="Vector3I"/>.
+/// </summary>
 public static class Vector3IExtensions {
     /// <summary>
     /// Sets <paramref name="vector"/>.X to <paramref name="x"/>.

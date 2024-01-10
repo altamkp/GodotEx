@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="Node2D"/>.
+/// </summary>
 public static class Node2DExtensions {
     /// <summary>
     /// Calculates the distance from <paramref name="node"/> to <paramref name="target"/>.

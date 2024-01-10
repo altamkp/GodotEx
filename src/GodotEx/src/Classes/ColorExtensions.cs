@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="Color"/>.
+/// </summary>
 public static class ColorExtensions {
     /// <summary>
     /// Sets <paramref name="color"/>.R to <paramref name="value"/>.

@@ -1,7 +1,10 @@
 using Godot;
 
-namespace GodotEx.Inputs;
+namespace GodotEx;
 
+/// <summary>
+/// Input handler interface
+/// </summary>
 public interface IInputHandler {
     /// <summary>
     /// Name of the handler.
@@ -22,8 +25,6 @@ public interface IInputHandler {
     /// Handles the given input event.
     /// </summary>
     /// <param name="event">Input event to handle.</param>
-    /// <returns>True if successfully handled, other false due to handler being disabled,
-    /// input event type not matching <typeparamref name="TInputEvent"/>, or 
-    /// predicate not satisfied.</returns>
+    /// <returns>True if successfully handled.</returns>
     bool Handle(InputEvent @event);
 }

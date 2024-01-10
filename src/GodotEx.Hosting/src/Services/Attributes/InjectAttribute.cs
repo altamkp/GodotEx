@@ -6,5 +6,5 @@ namespace GodotEx.Hosting;
 /// </summary>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
 public class InjectAttribute : Attribute { 
-    public static readonly Type TYPE = typeof(InjectAttribute);
+    internal static readonly Type TYPE = typeof(InjectAttribute);
 }

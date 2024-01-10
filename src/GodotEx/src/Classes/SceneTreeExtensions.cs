@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="SceneTree"/>.
+/// </summary>
 public static class SceneTreeExtensions {
     /// <summary>
     /// Adds <paramref name="node"/> to the scene tree as single node.

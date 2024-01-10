@@ -11,7 +11,6 @@ namespace GodotEx.Hosting;
 [Eager]
 internal class DependencyInjector : IDisposable {
     private const BindingFlags BINDING_FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-    private static readonly Type INJECT_ATTRIBUTE_TYPE = typeof(InjectAttribute);
 
     private readonly SceneTree _sceneTree;
 
@@ -30,8 +29,8 @@ internal class DependencyInjector : IDisposable {
         var type = node.GetType();
 
         if (!_members.TryGetValue(type, out var members)) {
-            var properties = type.GetPropertiesWithAttribute(INJECT_ATTRIBUTE_TYPE, BINDING_FLAGS);
-            var fields = type.GetFieldsWithAttribute(INJECT_ATTRIBUTE_TYPE, BINDING_FLAGS);
+            var properties = type.GetPropertiesWithAttribute(InjectAttribute.TYPE, BINDING_FLAGS);
+            var fields = type.GetFieldsWithAttribute(InjectAttribute.TYPE, BINDING_FLAGS);
             members = properties.Cast<MemberInfo>().Concat(fields).ToArray();
             _members[type] = members;
         }

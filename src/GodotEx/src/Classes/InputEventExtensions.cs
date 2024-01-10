@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="InputEvent"/>.
+/// </summary>
 public static class InputEventExtensions {
     /// <summary>
     /// Checks if mouse left button is pressed.

@@ -1,12 +1,12 @@
 namespace GodotEx;
 
 /// <summary>
-/// Attribute that is recognized by <see cref="NodePathResolver"/> to resolve field or
-/// property node dependencies. A path can be specified, otherwise the resolver uses
-/// the trimmed pascal case version of the name of the field/property to first look for a node
-/// directly under the currently node, otherwise use the '%' unique node prefix to look for the 
-/// node if the first approach yield no result.
-/// Use with <see cref="GodotEx.Hosting.Host"/> is recommended.
+/// Attribute that is recognized by <see cref="NodeExtensions.Resolve(Godot.Node)"/> and
+/// GodotEx.Hosting.NodePathResolver to resolve field or property node dependencies. 
+/// A path can be specified, otherwise the resolver uses the trimmed pascal case version 
+/// of the name of the field/property to first look for a node directly under the currently node,
+/// otherwise use the '%' unique node prefix to look for the node if the first approach yielded
+/// result. Use with GodotEx.Hosting.NodePathResolver is recommended.
 /// </summary>
 /// <remarks>
 /// <b>Example 1</b>:
@@ -16,8 +16,8 @@ namespace GodotEx;
 /// [NodePath] public Node Node { get; set; }
 /// <br/>
 /// <br/>
-/// If path is not satisfied, <see cref="NodePathResolver"/> first looks for the node located 
-/// directly under the current node with the name "Node", otherwise looks for the unique node
+/// If path is not satisfied, <see cref="NodeExtensions.Resolve(Godot.Node)"/> first looks for the 
+/// node located directly under the current node with the name "Node", otherwise looks for the unique node
 /// with "%Node".
 /// <br/>
 /// <b>Example 2</b>:
@@ -27,14 +27,22 @@ namespace GodotEx;
 /// [NodePath("Node3/Node4")] public Node Node { get; set; }
 /// <br/>
 /// <br/>
-/// If path is satisfied, <see cref="NodePathResolver"/> looks for the node located at the path
-/// relative to the current node.
+/// If path is satisfied, <see cref="NodeExtensions.Resolve(Godot.Node)"/> looks for the node located 
+/// at the path relative to the current node.
 /// </remarks>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
 public class NodePathAttribute : Attribute {
+    /// <summary>
+    /// Returns a new <see cref="NodePathAttribute"/> which is used for reference resolving
+    /// with <see cref="NodeExtensions.Resolve(Godot.Node)"/> and GodotEx.Hosting.NodePathResolver.
+    /// </summary>
+    /// <param name="path">Path to assign.</param>
     public NodePathAttribute(string? path = null) {
         Path = path;
     }
 
+    /// <summary>
+    /// Path to the reference node.
+    /// </summary>
     public string? Path { get; }
 }

@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="Node3D"/>.
+/// </summary>
 public static class Node3DExtensions {
     /// <summary>
     /// Calculates the distance from <paramref name="node"/> to <paramref name="target"/>.
@@ -9,8 +12,8 @@ public static class Node3DExtensions {
     /// <param name="node">Starting node.</param>
     /// <param name="target">Target to use.</param>
     /// <returns>Distance from <paramref name="node"/> to <paramref name="target"/>.</returns>
-    public static float DistanceTo(this Node3D node3D, Node3D target) {
-        return node3D.GlobalPosition.DistanceTo(target.GlobalPosition);
+    public static float DistanceTo(this Node3D node, Node3D target) {
+        return node.GlobalPosition.DistanceTo(target.GlobalPosition);
     }
 
     /// <summary>
@@ -19,8 +22,8 @@ public static class Node3DExtensions {
     /// <param name="node">Starting node.</param>
     /// <param name="target">Target to use.</param>
     /// <returns>Distance from <paramref name="node"/> to <paramref name="target"/>.</returns>
-    public static float DistanceTo(this Node3D node3D, Vector3 target) {
-        return node3D.GlobalPosition.DistanceTo(target);
+    public static float DistanceTo(this Node3D node, Vector3 target) {
+        return node.GlobalPosition.DistanceTo(target);
     }
 
     /// <summary>

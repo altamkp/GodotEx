@@ -2,6 +2,9 @@ using Godot;
 
 namespace GodotEx;
 
+/// <summary>
+/// Extensions for <see cref="Viewport"/> related to raycast.
+/// </summary>
 public static class RaycastViewportExtensions {
     /// <summary>
     /// Returns raycast result from the current mouse position with <paramref name="layers"/>.
