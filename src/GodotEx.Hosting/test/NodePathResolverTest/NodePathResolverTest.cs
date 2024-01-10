@@ -1,9 +1,9 @@
 using DotnetEx.Reflections;
 using Godot;
-using System.Diagnostics;
 using System.Reflection;
+using Xunit;
 
-namespace GodotEx.Tests;
+namespace GodotEx.Hosting.Tests;
 
 public partial class NodePathResolverTest : Node {
     [NodePath] 
@@ -19,15 +19,15 @@ public partial class NodePathResolverTest : Node {
     public Label Label { get; set; }
 
     public override void _Ready() {
-        NodePathResolver.Resolve(this);
-
         var type = GetType();
         var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
         foreach (var property in type.GetPropertiesWithAttribute<NodePathAttribute>(flags)) {
-            Debug.Assert(property.GetValue(this) != null);
+            Assert.NotNull(property.GetValue(this));
         }
         foreach (var field in type.GetFieldsWithAttribute<NodePathAttribute>(flags)) {
-            Debug.Assert(field.GetValue(this) != null);
+            Assert.NotNull(field.GetValue(this));
         }
+
+        GD.Print("Test passed.");
     }
 }

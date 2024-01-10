@@ -10,11 +10,10 @@ config_version=5
 
 [application]
 
-config/name="GodotEx.Tests"
-run/main_scene="res://Extensions/Common/TimerExtensionsTest.tscn"
+config/name="GodotEx.Async.Tests"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
-project/assembly_name="GodotEx.Tests"
+project/assembly_name="GodotEx.Async.Tests"

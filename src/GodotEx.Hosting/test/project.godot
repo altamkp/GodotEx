@@ -10,11 +10,15 @@ config_version=5
 
 [application]
 
-config/name="GodotEx.Tests"
-run/main_scene="res://Extensions/Common/TimerExtensionsTest.tscn"
+config/name="GodotEx.Hosting.Tests"
+run/main_scene="res://DependencyInjectorTest/DependencyInjectorTest.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ApplicationHost="*res://ApplicationHost.tscn"
+
 [dotnet]
 
-project/assembly_name="GodotEx.Tests"
+project/assembly_name="GodotEx.Hosting.Tests"

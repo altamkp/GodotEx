@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <PackageId>GodotEx.Async</PackageId> 
+        <Version>1.0.0</Version>
+        <OutputType>Library</OutputType>
+        <IsPackable>true</IsPackable>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>11.0</LangVersion>
+        
+        <Authors>altamkp</Authors>
+        <Company>altamkp</Company>
+        <PackageDescription>GodotEx async library</PackageDescription>
+        <RepositoryUrl>https://github.com/altamkp/GodotEx</RepositoryUrl>
+
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <NoWarn>8618</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="../../GodotEx/src/GodotEx.csproj" />
+    </ItemGroup>
+
+</Project>
