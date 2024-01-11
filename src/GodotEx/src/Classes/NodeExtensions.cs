@@ -9,6 +9,7 @@ namespace GodotEx;
 /// </summary>
 public static class NodeExtensions {
     private const BindingFlags FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+    private const string RESOLVED = "resolved";
 
     /// <summary>
     /// Returns all children of type <typeparamref name="T"/> under <paramref name="node"/>.
@@ -115,6 +116,12 @@ public static class NodeExtensions {
     /// <param name="node">Node to resolve.</param>
     /// <exception cref="InvalidOperationException">Dependency not assignable to member.</exception>
     public static void Resolve(this Node node) {
+        if (node.HasMeta(RESOLVED)) {
+            if (node.GetMeta(RESOLVED).AsBool()) {
+                return;
+            }
+        }
+
         var type = node.GetType();
 
         var properties = type.GetPropertiesAndAttributes<NodePathAttribute>(FLAGS);
@@ -126,6 +133,8 @@ public static class NodeExtensions {
         foreach (var (field, attributes) in fields) {
             ResolveDependency(field, attributes);
         }
+
+        node.SetMeta(RESOLVED, true);
 
         void ResolveDependency(MemberInfo member, IEnumerable<NodePathAttribute> attributes) {
             var path = attributes.Single().Path;
