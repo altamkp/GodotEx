@@ -1,4 +1,3 @@
-using DotnetEx.Reflections;
 using Godot;
 using System.Reflection;
 
@@ -7,10 +6,7 @@ namespace GodotEx;
 /// <summary>
 /// Extensions for <see cref="Node"/>.
 /// </summary>
-public static class NodeExtensions {
-    private const BindingFlags FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-    private const string RESOLVED = "resolved";
-
+public static partial class NodeExtensions {
     /// <summary>
     /// Returns all children of type <typeparamref name="T"/> under <paramref name="node"/>.
     /// </summary>
@@ -107,51 +103,5 @@ public static class NodeExtensions {
             tasks[i] = node.GetChild(i).QueueFreeAsync();
         }
         return Task.WhenAll(tasks);
-    }
-
-    /// <summary>
-    /// Resolve field and property node dependencies labeled by <see cref="NodePathAttribute"/>.
-    /// See <see cref="NodePathAttribute"/> for more.
-    /// </summary>
-    /// <param name="node">Node to resolve.</param>
-    /// <exception cref="InvalidOperationException">Dependency not assignable to member.</exception>
-    public static void Resolve(this Node node) {
-        if (node.HasMeta(RESOLVED)) {
-            if (node.GetMeta(RESOLVED).AsBool()) {
-                return;
-            }
-        }
-
-        var type = node.GetType();
-
-        var properties = type.GetPropertiesAndAttributes<NodePathAttribute>(FLAGS);
-        foreach (var (property, attributes) in properties) {
-            ResolveDependency(property, attributes);
-        }
-
-        var fields = type.GetFieldsAndAttributes<NodePathAttribute>(FLAGS);
-        foreach (var (field, attributes) in fields) {
-            ResolveDependency(field, attributes);
-        }
-
-        node.SetMeta(RESOLVED, true);
-
-        void ResolveDependency(MemberInfo member, IEnumerable<NodePathAttribute> attributes) {
-            var path = attributes.Single().Path;
-            Node dependency;
-            if (path != null) {
-                dependency = node.GetNode(path);
-            } else {
-                var name = member.Name.TrimStart('_').ToPascalCase();
-                dependency = node.GetNodeOrNull(name) ?? node.GetNode($"%{name}");
-            }
-
-            var dependencyType = dependency.GetType();
-            var memberType = member.GetMemberType();
-            if (!dependencyType.IsAssignableTo(memberType)) {
-                throw new InvalidOperationException($"Dependency of type {dependencyType} is not assignable to {memberType}.");
-            }
-            member.SetValue(node, dependency);
-        }
     }
 }
