@@ -1,0 +1,38 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../src",
+          "files": ["**/*.csproj"],
+          "exclude": "**/test/**"
+        }
+      ],
+      "dest": "api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": ["**/*.{md,yml}"],
+        "exclude": ["_site/**"]
+      }
+    ],
+    "resource": [
+      {
+        "files": ["images/**"]
+      }
+    ],
+    "output": "_site",
+    "template": ["default", "modern"],
+    "globalMetadata": {
+      "_appFaviconPath": "images/altamkp.ico",
+      "_appFooter": "Copyright (c) altamkp",
+      "_appLogoPath": "images/altamkp.png",
+      "_appName": "GodotEx",
+      "_appTitle": "GodotEx",
+      "_enableSearch": true,
+      "pdf": true
+    }
+  }
+}

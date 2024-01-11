@@ -431,3 +431,7 @@ $RECYCLE.BIN/
 
 ## Godot
 .godot/
+
+## Docfx
+docs/_site/
+docs/api/

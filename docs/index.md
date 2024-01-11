@@ -8,7 +8,7 @@ Currently available extension libraries:
 
   Basic extension library for Godot including:
 
-  - Extension methods for Godot classes such as [InputEvent](https://docs.godotengine.org/en/stable/classes/class_inputevent.html), [Node](https://docs.godotengine.org/en/stable/classes/class_node.html), [Transform3D](https://docs.godotengine.org/en/stable/classes/class_transform3d.html), etc. 
+  - Extension methods for Godot classes such as [InputEvent](https://docs.godotengine.org/en/stable/classes/class_inputevent.html), [Node](https://docs.godotengine.org/en/stable/classes/class_node.html), [Transform3D](https://docs.godotengine.org/en/stable/classes/class_transform3d.html), etc.
   - Utilities for input management, raycast, node path resolving, etc.
 
 - [GodotEx.Async]()
@@ -25,14 +25,10 @@ Currently available extension libraries:
   - A `Host` node that provides hosting functionalities with [`ServiceProvider`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovider?view=dotnet-plat-ext-8.0)
   - Dependency injection through the above `Host`
 
-## Documentation
+##### License
 
-Please refer to [this page](https://altamkp.github.io/GodotEx) for a detailed documentation on all available extension libraries.
+Available under the [MIT License](https://github.com/altamkp/GodotEx/blob/master/LICENSE.md).
 
-## License
-
-Available under the [MIT License](LICENSE.md).
-
-## Copyright
+##### Copyright
 
 Copyright (c) 2024 [altamkp](https://github.com/altamkp)
