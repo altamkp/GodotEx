@@ -27,7 +27,7 @@
     "template": ["default", "modern"],
     "globalMetadata": {
       "_appFaviconPath": "images/altamkp.ico",
-      "_appFooter": "Copyright (c) altamkp",
+      "_appFooter": "Copyright (c) 2024 <a href='https://github.com/altamkp'>altamkp</a>",
       "_appLogoPath": "images/altamkp.png",
       "_appName": "GodotEx",
       "_appTitle": "GodotEx",

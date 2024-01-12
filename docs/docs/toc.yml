@@ -1,9 +1,22 @@
 - name: GodotEx
   items:
-  - name: Basic extensions
-    href: BasicExtensions.md
+    - name: Basic extensions
+      href: GodotEx/BasicExtensions.md
+    - name: Resolving node dependencies
+      href: GodotEx/ResolvingNodeDependencies.md
+    - name: Packed scene instantiation
+      href: GodotEx/PackedSceneInstantiation.md
+    - name: Raycast
+      href: GodotEx/Raycast.md
+    - name: Directions
+      href: GodotEx/Directions.md
+    - name: Input handling
+      href: GodotEx/InputHandling.md
 - name: GodotEx.Async
   items:
-  - name: Asynchronous extensions
-    href: AsyncExtensions.md
- 
+    - name: Asynchronous extensions
+      href: GodotEx.Async/AsyncExtensions.md
+- name: GodotEx.Hosting
+  items:
+    - name: Setting up an autoload Host
+      href: GodotEx.Hosting/SettingUpAnAutoloadHost.md

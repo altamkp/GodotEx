@@ -1,4 +1,4 @@
-using DotnetEx.Maths;
+using DotEx.Maths;
 using Godot;
 
 namespace GodotEx;
@@ -88,7 +88,7 @@ public static class Vector2Extensions {
     /// <param name="vector">Vector to trim.</param>
     /// <param name="precision">Precision to use.</param>
     /// <returns>Trimmed vector.</returns>
-    public static Vector2 Trim(this Vector2 vector, float precision = MathDef.DEFAULT_PRECISION) =>
+    public static Vector2 Trim(this Vector2 vector, float precision = (float)MathDef.DEFAULT_PRECISION) =>
         new(vector.X.Trim(precision), vector.Y.Trim(precision));
 
     /// <summary>

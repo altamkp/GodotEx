@@ -3,7 +3,7 @@ namespace GodotEx;
 /// <summary>
 /// Arbitrary direction enum representing 3-DOF directions.
 /// </summary>
-public enum Direction {
+public enum Direction3D {
     /// <summary>
     /// Direction pointing to the right.
     /// </summary>

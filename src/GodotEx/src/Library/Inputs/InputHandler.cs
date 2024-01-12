@@ -3,12 +3,12 @@ using Godot;
 namespace GodotEx;
 
 /// <summary>
-/// Handler class for handling input event of type <typeparamref name="TInputEvent"/>.
+/// Handler class for handling input event of type <typeparamref name="T"/>.
 /// </summary>
-/// <typeparam name="TInputEvent"></typeparam>
-public class InputHandler<TInputEvent> : IInputHandler where TInputEvent : InputEvent {
-    private readonly Func<TInputEvent, bool> _predicate;
-    private readonly Action<TInputEvent> _handler;
+/// <typeparam name="T"></typeparam>
+public class InputHandler<T> : IInputHandler where T : InputEvent {
+    private readonly Func<T, bool> _predicate;
+    private readonly Action<T> _callback;
 
     /// <summary>
     /// Constructs an new input handler object.
@@ -16,12 +16,12 @@ public class InputHandler<TInputEvent> : IInputHandler where TInputEvent : Input
     /// <param name="name">Name of the handler.</param>
     /// <param name="pass">True input would be passed to its parent after it has been handled.</param>
     /// <param name="predicate">Predicate to satisfy upon handling input events.</param>
-    /// <param name="handler">Handler to execute when predicate is satisfied.</param>
-    public InputHandler(string name, bool pass, Func<TInputEvent, bool> predicate, Action<TInputEvent> handler) {
+    /// <param name="callback">Handler to execute when predicate is satisfied.</param>
+    public InputHandler(string name, Func<T, bool> predicate, Action<T> callback, bool pass = false) {
         Name = name;
-        Pass = pass;
         _predicate = predicate;
-        _handler = handler;
+        _callback = callback;
+        Pass = pass;
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public class InputHandler<TInputEvent> : IInputHandler where TInputEvent : Input
     /// <summary>
     /// Whether the input would be passed to its parent after it has been handled.
     /// </summary>
-    public bool Pass { get; }
+    public bool Pass { get; } = false;
 
     /// <summary>
     /// When disabled, the input event is not handled.
@@ -44,12 +44,12 @@ public class InputHandler<TInputEvent> : IInputHandler where TInputEvent : Input
     /// </summary>
     /// <param name="event">Input event to handle.</param>
     /// <returns>True if successfully handled, otherwise false due to handler being disabled, input event 
-    /// type not matching <typeparamref name="TInputEvent"/>, or predicate not satisfied.</returns>
-    public bool Handle(InputEvent @event) {
-        if (Disabled || @event is not TInputEvent tInputEvent || !_predicate(tInputEvent)) {
+    /// type not matching <typeparamref name="T"/>, or predicate not satisfied.</returns>
+    public virtual bool Handle(InputEvent @event) {
+        if (Disabled || @event is not T tInputEvent || !_predicate(tInputEvent)) {
             return false;
         }
-        _handler(tInputEvent);
+        _callback(tInputEvent);
         return true;
     }
 }
