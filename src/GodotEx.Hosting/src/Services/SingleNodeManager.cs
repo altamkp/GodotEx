@@ -25,13 +25,13 @@ internal class SingleNodeManager : IDisposable {
 
     private void OnNodeAdded(Node node) {
         if (node.GetType().IsDefined<SingleNodeAttribute>()) {
-            _tree.AddSingleNode(node);
+            _tree.AddSingle(node);
         }
     }
 
     private void OnNodeRemoved(Node node) {
         if (node.GetType().IsDefined<SingleNodeAttribute>()) {
-            _tree.RemoveSingleNode(node);
+            _tree.RemoveSingle(node);
         }
     }
 }

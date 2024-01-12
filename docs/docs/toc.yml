@@ -4,8 +4,10 @@
       href: GodotEx/BasicExtensions.md
     - name: Resolving node dependencies
       href: GodotEx/ResolvingNodeDependencies.md
-    - name: Packed scene instantiation
-      href: GodotEx/PackedSceneInstantiation.md
+    - name: Instantiating packed scenes
+      href: GodotEx/InstantiatingPackedScenes.md
+    - name: Single nodes
+      href: GodotEx/SingleNodes.md
     - name: Raycast
       href: GodotEx/Raycast.md
     - name: Directions
@@ -15,10 +17,10 @@
 - name: GodotEx.Async
   items:
     - name: Asynchronous extensions
-      href: GodotEx.Async/AsyncExtensions.md
+      href: GodotEx.Async/AsynchronousExtensions.md
     - name: Cancellable signal awaiter
       href: GodotEx.Async/CancellableSignalAwaiter.md
 - name: GodotEx.Hosting
   items:
-    - name: Setting up an autoload Host
+    - name: Setting up an autoload host
       href: GodotEx.Hosting/SettingUpAnAutoloadHost.md
