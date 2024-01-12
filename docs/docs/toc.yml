@@ -16,6 +16,8 @@
   items:
     - name: Asynchronous extensions
       href: GodotEx.Async/AsyncExtensions.md
+    - name: Cancellable signal awaiter
+      href: GodotEx.Async/CancellableSignalAwaiter.md
 - name: GodotEx.Hosting
   items:
     - name: Setting up an autoload Host

@@ -12,7 +12,7 @@ public static partial class InputEventExtensions {
     /// <param name="event">Input event to check.</param>
     /// <param name="button">Mouse button to compare to.</param>
     /// <returns>True if mouse <paramref name="button"/> is pressed.</returns>
-    public static bool IsMousePressed(this InputEvent @event, MouseButton button) {
+    public static bool IsMouseClicked(this InputEvent @event, MouseButton button) {
         return @event is InputEventMouseButton buttonEvent
             && buttonEvent.ButtonIndex == button && buttonEvent.IsPressed();
     }
@@ -23,7 +23,7 @@ public static partial class InputEventExtensions {
     /// <param name="event">Input event to check.</param>
     /// <param name="button">Mouse button to compare to.</param>
     /// <returns>True if mouse <paramref name="button"/> is released.</returns>
-    public static bool IsMouseReleased(this InputEvent @event, MouseButton button) {
+    public static bool IsMouseLifted(this InputEvent @event, MouseButton button) {
         return @event is InputEventMouseButton buttonEvent
             && buttonEvent.ButtonIndex == button && !buttonEvent.IsPressed();
     }

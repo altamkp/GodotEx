@@ -20,7 +20,7 @@ public partial class InputManagerTest : Control {
         _shortcutManager.AddHandler(copyHandler);
 
         _inputManager.AddHandler<InputEventMouseButton>("Left click",
-            e => e.IsMouseLeftPressed(),
+            e => e.IsLeftClicked(),
             e => GD.Print($"{e.ButtonIndex} clicked"));
 
         _inputManager.AddHandler<InputEventMouseMotion>("Mouse motion",
