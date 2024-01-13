@@ -49,7 +49,7 @@ public partial class CinematicCamera : Camera3D {
 
 ## Usage with `GodotEx.Hosting.Host`
 
-It is **highly recommended** to use single nodes together with `GodotEx.Hosting.Host` since it provides a hosted service for adding/removing single nodes as they enter/exit the scene tree, hence you don't need to call `GetTree().AddSingle(this)` and `GetTree().RemoveSingle(this)` manually in their respective virtual methods. Learn how to set up an application scoped [autoload host](../GodotEx.Hosting/SettingUpAnAutoloadHost.md) here.
+It is **highly recommended** to use single nodes together with `GodotEx.Hosting.Host` since it provides a hosted service for adding/removing single nodes as they enter/exit the scene tree, hence you don't need to call `GetTree().AddSingle(this)` and `GetTree().RemoveSingle(this)` manually in their respective virtual methods. Learn how to set up an application scoped [autoload host](~/docs/GodotEx.Hosting/Hosting.md#setting-up-an-autoload-host) here.
 
 With this approach, you can simply label the class with the `[SingleNode]` attribute.
 

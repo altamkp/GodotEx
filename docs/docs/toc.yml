@@ -22,5 +22,5 @@
       href: GodotEx.Async/CancellableSignalAwaiter.md
 - name: GodotEx.Hosting
   items:
-    - name: Setting up an autoload host
-      href: GodotEx.Hosting/SettingUpAnAutoloadHost.md
+    - name: Hosting
+      href: GodotEx.Hosting/Hosting.md

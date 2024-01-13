@@ -58,4 +58,4 @@ Nodes instantiated with `GDx.New()` and its other overloads are automatically re
 
 ## Usage with `GodotEx.Hosting.Host`
 
-It is **highly recommended** to use the `[NodePath]` resolving functionality together with `GodotEx.Hosting.Host` since it provides a hosted service for resolving nodes as they enter the scene tree, hence you don't need to call `this.Resolve()` on all nodes that required resolving. Learn how to set up an application scoped [autoload host](../GodotEx.Hosting/SettingUpAnAutoloadHost.md) here.
+It is **highly recommended** to use the `[NodePath]` resolving functionality together with `GodotEx.Hosting.Host` since it provides a hosted service for resolving nodes as they enter the scene tree, hence you don't need to call `this.Resolve()` on all nodes that required resolving. Learn how to set up an application scoped [autoload host](~/docs/GodotEx.Hosting/Hosting.md#setting-up-an-autoload-host) here.

@@ -19,7 +19,7 @@ namespace GodotEx.Hosting;
 /// <b>Note</b>: host nodes can exist any where within the current scene, 
 /// but there may only be at most one autoload host.
 /// </remarks>
-public partial class Host : Node {
+public abstract partial class Host : Node {
     /// <summary>
     /// Autoload host instance configured in Project Settings.
     /// </summary>
@@ -34,7 +34,6 @@ public partial class Host : Node {
     /// be called first, and then that of the children.
     /// </summary>
     public override void _EnterTree() {
-        base._EnterTree();
         if (GetParent() == GetTree().Root && this != GetTree().CurrentScene) {
             if (Autoload != null) {
                 throw new InvalidOperationException("Autoload host exists already.");
