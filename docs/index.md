@@ -7,7 +7,7 @@
 Basic extension library for Godot:
 
 - Extension methods for Godot classes such as [InputEvent](https://docs.godotengine.org/en/stable/classes/class_inputevent.html), [Node](https://docs.godotengine.org/en/stable/classes/class_node.html), [Transform3D](https://docs.godotengine.org/en/stable/classes/class_transform3d.html), etc.
-- Utilities for node [path resolving](docs/GodotEx/ResolvingNodeDependencies.md), [packed scene instantiation](docs/GodotEx/InstantiatingPackedScenes.md), [raycast](docs/GodotEx/Raycast.md), [input handling](docs/GodotEx/InputHandling.md), etc.
+- Utilities for [node path resolving](docs/GodotEx/ResolvingNodeDependencies.md), [packed scene instantiation](docs/GodotEx/InstantiatingPackedScenes.md), [raycast](docs/GodotEx/Raycast.md), [input handling](docs/GodotEx/InputHandling.md), etc.
 
 ## [GodotEx.Async](docs/GodotEx.Async/AsynchronousExtensions.md)
 
