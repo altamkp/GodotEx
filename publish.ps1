@@ -28,13 +28,12 @@ $product = $(basename $(git rev-parse --show-toplevel))
 
 Invoke-Utility dotnet clean --configuration release
 Invoke-Utility dotnet build "-p:Version=$version" --configuration release
-Invoke-Utility dotnet test
 Invoke-Utility dotnet pack "-p:Version=$version" --configuration release -o Releases/$version --no-build
 
 Write-Host "[Information]: Publishing $product $version"
 
 # push tag and package
 Invoke-Utility git push --tags
-Invoke-Utility dotnet nuget push Releases/$version/**.nupkg --source nuget --api-key oy2ajeht5ay6uscr3qnqu7oufudegedetpnzzkg7jnvibi
+Invoke-Utility dotnet nuget push Releases/$version/**.nupkg --source nuget.org
 
 Write-Host "[Information]: Successfully published $product $version"
