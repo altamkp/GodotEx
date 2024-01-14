@@ -1,4 +1,6 @@
 - name: GodotEx
+  expanded: true
+  href: GodotEx/index.md
   items:
     - name: Basic extensions
       href: GodotEx/BasicExtensions.md
@@ -15,12 +17,16 @@
     - name: Input handling
       href: GodotEx/InputHandling.md
 - name: GodotEx.Async
+  expanded: true
+  href: GodotEx.Async/index.md
   items:
     - name: Asynchronous extensions
       href: GodotEx.Async/AsynchronousExtensions.md
     - name: Cancellable signal awaiter
       href: GodotEx.Async/CancellableSignalAwaiter.md
 - name: GodotEx.Hosting
+  expanded: true
+  href: GodotEx.Hosting/index.md
   items:
     - name: Hosting
       href: GodotEx.Hosting/Hosting.md
