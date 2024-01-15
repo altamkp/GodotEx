@@ -49,7 +49,7 @@ If no path is provided, the attribute resolves the dependency by looking for a n
 
 In either case, if a node dependency is not found, an exception would be thrown.
 
-You can call `node.Resolve()` any time you desire, but the common place resolve node dependencies is either `_EnterTree()` or `_Ready()` where these dependencies would normally come into action.
+You can call `node.Resolve()` any time you desire, but the common place to resolve node dependencies is either `_EnterTree()` or `_Ready()` where these dependencies would normally come into action.
 You can check whether the node is resolved by calling `node.IsResolved()`, calling `node.Resolve()` more than once has no effect.
 
 ## Usage with `GDx.New()`

@@ -1,5 +1,4 @@
 using Godot;
-using System.Reflection;
 
 namespace GodotEx.Hosting;
 
@@ -9,8 +8,6 @@ namespace GodotEx.Hosting;
 /// </summary>
 [Eager]
 internal class NodePathResolver : IDisposable {
-    private const BindingFlags FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-
     private readonly SceneTree _tree;
 
     public NodePathResolver(SceneTree tree) {
