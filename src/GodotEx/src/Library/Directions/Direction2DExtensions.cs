@@ -27,12 +27,12 @@ public static class Direction2DExtensions {
     /// <param name="direction">Direction to convert.</param>
     /// <returns>Result vector.</returns>
     /// <exception cref="ArgumentException">Non-existing 2D direction.</exception>
-    public static Vector2 ToVector2(this Direction3D direction) {
+    public static Vector2 ToVector2(this Direction2D direction) {
         return direction switch {
-            Direction3D.Right => Vector2.Right,
-            Direction3D.Left => Vector2.Left,
-            Direction3D.Up => Vector2.Up,
-            Direction3D.Down => Vector2.Down,
+            Direction2D.Right => Vector2.Right,
+            Direction2D.Left => Vector2.Left,
+            Direction2D.Up => Vector2.Up,
+            Direction2D.Down => Vector2.Down,
             _ => throw new ArgumentException($"Non-existing 2D direction {direction}.")
         };
     }
