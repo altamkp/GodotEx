@@ -7,6 +7,90 @@ namespace GodotEx.Async;
 /// </summary>
 public static class NodeExtensions {
     /// <summary>
+    /// Returns a <see cref="SignalAwaiter"/> that completes when the node enters the scene tree.
+    /// </summary>
+    /// <param name="node">Node to await.</param>
+    /// <returns>A <see cref="SignalAwaiter"/> that completes when the node enters the scene tree.</returns>
+    public static SignalAwaiter TreeEnteredAsync(this Node node) {
+        return node.ToSignal(node, Node.SignalName.TreeEntered);
+    }
+
+    /// <summary>
+    /// Returns a <see cref="SignalAwaiter"/> that completes when the node enters the scene tree
+    /// or when cancellation is requested.
+    /// </summary>
+    /// <param name="node">Node to await.</param>
+    /// <param name="cancellationToken">Cancellation token to provide the awaiter with.</param>
+    /// <returns>A <see cref="CancellableSignalAwaiter"/> that completes when the node enters 
+    /// the scene tree or when cancellation is requested.</returns>
+    public static CancellableSignalAwaiter TreeEnteredAsync(this Node node, CancellationToken cancellationToken) {
+        return node.ToSignal(node, Node.SignalName.TreeEntered, cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns a <see cref="SignalAwaiter"/> that completes when the node is ready.
+    /// </summary>
+    /// <param name="node">Node to await.</param>
+    /// <returns>A <see cref="SignalAwaiter"/> that completes when the node is ready.</returns>
+    public static SignalAwaiter ReadyAsync(this Node node) {
+        return node.ToSignal(node, Node.SignalName.Ready);
+    }
+
+    /// <summary>
+    /// Returns a <see cref="SignalAwaiter"/> that completes when the node is ready
+    /// or when cancellation is requested.
+    /// </summary>
+    /// <param name="node">Node to await.</param>
+    /// <param name="cancellationToken">Cancellation token to provide the awaiter with.</param>
+    /// <returns>A <see cref="CancellableSignalAwaiter"/> that completes when the node 
+    /// is ready or when cancellation is requested.</returns>
+    public static CancellableSignalAwaiter ReadyAsync(this Node node, CancellationToken cancellationToken) {
+        return node.ToSignal(node, Node.SignalName.Ready, cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns a <see cref="SignalAwaiter"/> that completes when the node is exiting the scene tree.
+    /// </summary>
+    /// <param name="node">Node to await.</param>
+    /// <returns>A <see cref="SignalAwaiter"/> that completes when the node is exiting the scene tree.</returns>
+    public static SignalAwaiter TreeExitingAsync(this Node node) {
+        return node.ToSignal(node, Node.SignalName.TreeExiting);
+    }
+
+    /// <summary>
+    /// Returns a <see cref="SignalAwaiter"/> that completes when the node is exiting the scene tree
+    /// or when cancellation is requested.
+    /// </summary>
+    /// <param name="node">Node to await.</param>
+    /// <param name="cancellationToken">Cancellation token to provide the awaiter with.</param>
+    /// <returns>A <see cref="CancellableSignalAwaiter"/> that completes when the node is 
+    /// exiting the scene tree or when cancellation is requested.</returns>
+    public static CancellableSignalAwaiter TreeExitingAsync(this Node node, CancellationToken cancellationToken) {
+        return node.ToSignal(node, Node.SignalName.TreeExiting, cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns a <see cref="SignalAwaiter"/> that completes when the node exits the scene tree.
+    /// </summary>
+    /// <param name="node">Node to await.</param>
+    /// <returns>A <see cref="SignalAwaiter"/> that completes when the node exits the scene tree.</returns>
+    public static SignalAwaiter TreeExitedAsync(this Node node) {
+        return node.ToSignal(node, Node.SignalName.TreeExited);
+    }
+
+    /// <summary>
+    /// Returns a <see cref="SignalAwaiter"/> that completes when the node exits the scene tree
+    /// or when cancellation is requested.
+    /// </summary>
+    /// <param name="node">Node to await.</param>
+    /// <param name="cancellationToken">Cancellation token to provide the awaiter with.</param>
+    /// <returns>A <see cref="CancellableSignalAwaiter"/> that completes when the node
+    /// exits the scene tree or when cancellation is requested.</returns>
+    public static CancellableSignalAwaiter TreeExitedAsync(this Node node, CancellationToken cancellationToken) {
+        return node.ToSignal(node, Node.SignalName.TreeExited, cancellationToken);
+    }
+
+    /// <summary>
     /// Asynchronously queue frees <paramref name="node"/>.
     /// </summary>
     /// <param name="node">Node to queue free.</param>
