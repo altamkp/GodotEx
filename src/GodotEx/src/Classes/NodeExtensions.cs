@@ -21,6 +21,21 @@ public static partial class NodeExtensions {
     }
 
     /// <summary>
+    /// Returns all descendants under <paramref name="node"/> recursively.
+    /// </summary>
+    /// <param name="node">Node to search.</param>
+    /// <returns>All descendants.</returns>
+    public static IEnumerable<Node> GetDescendants(this Node node) {
+        foreach (var child in node.GetChildren()) {
+            yield return child;
+
+            foreach (var descendant in child.GetDescendants()) {
+                yield return descendant;
+            }
+        }
+    }
+
+    /// <summary>
     /// Returns all descendants of type <typeparamref name="T"/> under <paramref name="node"/> recursively.
     /// </summary>
     /// <typeparam name="T">Target type.</typeparam>
