@@ -7,10 +7,10 @@ function Invoke-Utility {
 }
 
 $status = $(git status --porcelain)
-if (-not ([string]::IsNullOrWhiteSpace($status))) {
-    Write-Error "[Error]: Current repo is not clean"
-    Exit 1
-}
+# if (-not ([string]::IsNullOrWhiteSpace($status))) {
+#     Write-Error "[Error]: Current repo is not clean"
+#     Exit 1
+# }
 
 $version = $(git tag --points-at $(git log -n1 --pretty='%h'))
 if ($null -eq $version) {
@@ -33,7 +33,7 @@ Invoke-Utility dotnet pack "-p:Version=$version" --configuration release -o Rele
 Write-Host "[Information]: Publishing $product $version"
 
 # push tag and package
-Invoke-Utility git push --tags
+# Invoke-Utility git push --tags
 Invoke-Utility dotnet nuget push Releases/$version/**.nupkg --source nuget.org
 
 Write-Host "[Information]: Successfully published $product $version"

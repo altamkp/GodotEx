@@ -11,10 +11,17 @@ config_version=5
 [application]
 
 config/name="GodotEx.Tests"
-run/main_scene="res://Node3DExtensionsTest/Node3DExtensionsTest.tscn"
+run/main_scene="res://LayerTest/LayerTest.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="GodotEx.Tests"
+
+[layer_names]
+
+3d_physics/layer_1="Ground"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Enemy"
+3d_physics/layer_4="Obstacle"

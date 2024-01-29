@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 namespace GodotEx;
 
 /// <summary>
-/// Attribute that is recognized by <see cref="GDx.New{T}()"/> to instantiate custom 
+/// Attribute that is recognized by <see cref="GDx.New{T}(Action{T}?)"/> to instantiate custom 
 /// node type labeled with this attribute by matching a tscn file with the same name 
 /// under the same folder as the current script, or using the path if it is provided.
 /// </summary>
@@ -35,28 +35,28 @@ namespace GodotEx;
 public class ScenePathAttribute : Attribute {
     private const string TSCN = ".tscn";
 
+    private readonly string _scriptPath;
+    private string? _scenePath;
+
     /// <summary>
-    /// Creates a new <see cref="ScenePathAttribute"/> used with <see cref="GDx.New{T}()"/>
+    /// Creates a new <see cref="ScenePathAttribute"/> used with <see cref="GDx.New{T}(Action{T}?)"/>
     /// and similar overloads to instantiate scenes.
     /// </summary>
-    /// <param name="path">Scene path.</param>
+    /// <param name="scenePath">Scene path.</param>
     /// <param name="scriptPath">Script path.</param>
     /// <exception cref="InvalidOperationException">Scene file not found.</exception>
-    public ScenePathAttribute(string? path = null, [CallerFilePath] string scriptPath = "") {
-        if (path == null) {
-            scriptPath = ProjectSettings.LocalizePath(scriptPath);
-            Path = System.IO.Path.ChangeExtension(scriptPath, TSCN);
-        } else {
-            Path = path;
-        }
-
-        if (!Godot.FileAccess.FileExists(Path)) {
-            throw new InvalidOperationException($"{Path} not found.");
-        }
+    public ScenePathAttribute(string? scenePath = null, [CallerFilePath] string scriptPath = "") {
+        _scenePath = scenePath;
+        _scriptPath = scriptPath;
     }
 
     /// <summary>
     /// File path of the scene with the annotated script attached.
     /// </summary>
-    public string Path { get; }
+    public string Path {
+        get {
+            _scenePath ??= ProjectSettings.LocalizePath(System.IO.Path.ChangeExtension(_scriptPath, TSCN));
+            return _scenePath;
+        }
+    }
 }

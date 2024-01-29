@@ -44,7 +44,7 @@ public static partial class NodeExtensions {
     public static IEnumerable<T> GetDescendants<T>(this Node node) where T : Node {
         foreach (var child in node.GetChildren<T>()) {
             yield return child;
-            
+
             foreach (var descendant in child.GetDescendants<T>()) {
                 yield return descendant;
             }

@@ -12,10 +12,12 @@ public static class GDx {
     /// Nodes are automatically resolved using this method, see <see cref="NodeExtensions.Resolve(Node)"/>.
     /// </summary>
     /// <param name="path">Packed scene path.</param>
+    /// <param name="setup">Setup action.</param>
     /// <returns>Instantiated node.</returns>
-    public static Node New(string path) {
+    public static Node New(string path, Action<Node>? setup = null) {
         var node = GD.Load<PackedScene>(path).Instantiate();
         node.Resolve();
+        setup?.Invoke(node);
         return node;
     }
 
@@ -25,10 +27,12 @@ public static class GDx {
     /// </summary>
     /// <typeparam name="T">Node type.</typeparam>
     /// <param name="path">Packed scene path.</param>
+    /// <param name="setup">Setup action.</param>
     /// <returns>Instantiated node of type <typeparamref name="T"/>.</returns>
-    public static T New<T>(string path) where T : Node {
+    public static T New<T>(string path, Action<T>? setup = null) where T : Node {
         var node = GD.Load<PackedScene>(path).Instantiate<T>();
         node.Resolve();
+        setup?.Invoke(node);
         return node;
     }
 
@@ -39,14 +43,16 @@ public static class GDx {
     /// Nodes are automatically resolved using this method, see <see cref="NodeExtensions.Resolve(Node)"/>.
     /// </summary>
     /// <param name="type">Node type.</param>
+    /// <param name="setup">Setup action.</param>
     /// <returns>Instantiated node of type <paramref name="type"/>.</returns>
     /// <exception cref="InvalidOperationException"><see cref="ScenePathAttribute"/>
     /// not defined for type <paramref name="type"/>.</exception>
-    public static Node New(Type type) {
+    public static Node New(Type type, Action<Node>? setup = null) {
         var attribute = type.GetCustomAttribute<ScenePathAttribute>()
             ?? throw new InvalidOperationException($"ScenePath attribute not defined for {type.Name}.");
         var node = GD.Load<PackedScene>(attribute.Path).Instantiate();
         node.Resolve();
+        setup?.Invoke(node);
         return node;
     }
 
@@ -57,15 +63,17 @@ public static class GDx {
     /// Nodes are automatically resolved using this method, see <see cref="NodeExtensions.Resolve(Node)"/>.
     /// </summary>
     /// <typeparam name="T">Node type.</typeparam>
+    /// <param name="setup">Setup action.</param>
     /// <returns>Instantiated node of type <typeparamref name="T"/>.</returns>
     /// <exception cref="InvalidOperationException"><see cref="ScenePathAttribute"/>
     /// not defined for type <typeparamref name="T"/>.</exception>
-    public static T New<T>() where T : Node {
+    public static T New<T>(Action<T>? setup = null) where T : Node {
         var type = typeof(T);
         var attribute = type.GetCustomAttribute<ScenePathAttribute>()
             ?? throw new InvalidOperationException($"ScenePath attribute not defined for {type.Name}.");
         var node = GD.Load<PackedScene>(attribute.Path).Instantiate<T>();
         node.Resolve();
+        setup?.Invoke(node);
         return node;
     }
 }

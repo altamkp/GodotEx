@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://hxntvkv6m8xa"]
+
+[ext_resource type="Script" path="res://LayerTest/LayerTest.cs" id="1_cqrsr"]
+[ext_resource type="Script" path="res://LayerTest/TestRigidBody.cs" id="2_3p6o3"]
+
+[node name="LayerTest" type="Node"]
+script = ExtResource("1_cqrsr")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+script = ExtResource("2_3p6o3")
+
+[node name="Camera" type="Camera3D" parent="."]

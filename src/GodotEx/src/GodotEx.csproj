@@ -21,7 +21,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="DotEx" Version="1.0.2" />
+        <PackageReference Include="DotEx" Version="1.0.3" />
         <PackageReference Include="GodotSharp" Version="4.2.0" />
     </ItemGroup>
 

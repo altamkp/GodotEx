@@ -7,16 +7,18 @@ namespace GodotEx;
 public static partial class NodeExtensions {
     private const string RESOLVED = "resolved";
 
+    private static readonly Dictionary<Type, IEnumerable<NodePathInfo>> NODE_PATH_INFOS = new();
+
     /// <summary>
     /// Checks if the dependencies of <paramref name="node"/> labeled by 
     /// <see cref="NodePathAttribute"/> has been resolved. Note that nodes created
-    /// by <see cref="GDx.New{T}()"/> and its overload methods automatically resolves
+    /// by <see cref="GDx.New{T}(Action{T}?)"/> and its overload methods automatically resolves
     /// the node as soon as it is instantiated.
     /// </summary>
     /// <param name="node"></param>
     /// <returns></returns>
     public static bool IsResolved(this Node node) {
-        return node.HasMeta(RESOLVED) && node.GetMeta(RESOLVED).AsBool();
+        return node.TryGetMeta(RESOLVED, out bool resolved) && resolved;
     }
 
     /// <summary>
@@ -26,19 +28,24 @@ public static partial class NodeExtensions {
     /// <param name="node">Node to resolve.</param>
     /// <exception cref="InvalidOperationException">Dependency not assignable to member.</exception>
     public static void Resolve(this Node node) {
+        const BindingFlags FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+
         if (node.IsResolved()) {
             return;
         }
 
         var type = node.GetType();
-        var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-        var fields = type.GetFieldsAndAttributes<NodePathAttribute>(flags);
-        var properties = type.GetPropertiesAndAttributes<NodePathAttribute>(flags);
-        foreach (var (property, attributes) in properties) {
-            ResolveDependency(property, attributes);
+        if (!NODE_PATH_INFOS.TryGetValue(type, out var dependencies)) {
+            var fields = type.GetFieldsAndAttributes<NodePathAttribute>(FLAGS)
+                .Select(f => new NodePathInfo(f.FieldInfo, f.Attributes));
+            var properties = type.GetPropertiesAndAttributes<NodePathAttribute>(FLAGS)
+                .Select(p => new NodePathInfo(p.PropertyInfo, p.Attributes));
+            dependencies = fields.Concat(properties).ToArray();
+            NODE_PATH_INFOS.Add(type, dependencies);
         }
-        foreach (var (field, attributes) in fields) {
-            ResolveDependency(field, attributes);
+
+        foreach (var (member, attributes) in dependencies) {
+            ResolveDependency(member, attributes);
         }
         node.SetMeta(RESOLVED, true);
 
@@ -58,6 +65,21 @@ public static partial class NodeExtensions {
                 throw new InvalidOperationException($"Dependency of type {dependencyType} is not assignable to {memberType}.");
             }
             member.SetValue(node, dependency);
+        }
+    }
+
+    private class NodePathInfo {
+        public NodePathInfo(MemberInfo memberInfo, IEnumerable<NodePathAttribute> attributes) {
+            MemberInfo = memberInfo;
+            Attributes = attributes;
+        }
+
+        public MemberInfo MemberInfo { get; }
+        public IEnumerable<NodePathAttribute> Attributes { get; }
+
+        public void Deconstruct(out MemberInfo memberInfo, out IEnumerable<NodePathAttribute> attributes) {
+            memberInfo = MemberInfo;
+            attributes = Attributes;
         }
     }
 }
