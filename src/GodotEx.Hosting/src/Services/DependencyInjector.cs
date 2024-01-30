@@ -4,10 +4,6 @@ using System.Reflection;
 
 namespace GodotEx.Hosting;
 
-/// <summary>
-/// Dependency injector for properties and fields within a node labeled by <see cref="InjectAttribute"/>.
-/// Configured as singleton service in <see cref="Host"/>.
-/// </summary>
 [Eager]
 internal class DependencyInjector : IDisposable {
     private const BindingFlags BINDING_FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;

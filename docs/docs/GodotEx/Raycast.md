@@ -29,11 +29,14 @@ GD.Print($"Raycast hit surface at {hit.Position} with normal {hit.Normal}.");
 
 ## Viewport Extensions
 
-There are currently two 3D viewport extension methods regarding the use of raycast. These can be easily used by setting the project in `Project > Project Settings... > 2D/3D Physics` and defining your own `PhysicsLayers` enum. Learn more about [bit flags](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum#enumeration-types-as-bit-flags) and [bitwise/shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators#left-shift-operator-).
+There are currently two 3D viewport extension methods regarding the use of raycast. These can be easily used by setting the project in `Project > Project Settings... > 2D/3D Physics` and defining your own `PhysicsLayers3D` enum. 
+
+> [!Tip]
+> Learn more about [bit flags](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum#enumeration-types-as-bit-flags) and [bitwise/shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators#left-shift-operator-).
 
 ```csharp
 [Flags]
-public enum PhysicsLayers {
+public enum PhysicsLayers3D : uint {
     None = 0,
     Ground = 1 << 0,    // Bit 0, value 1
     Player = 1 << 1,    // Bit 1, value 2
@@ -47,11 +50,11 @@ After setting up the physics layers, the following extensions can be used:
 1. Mouse raycast - getting raycast result from the current mouse position to specified physics layers
 
    ```csharp
-   var hit = GetViewport().GetMouseRaycast(PhysicsLayers.Ground | PhysicsLayers.Obstacles);
+   var hit = GetViewport().GetMouseRaycast(PhysicsLayers3D.Ground | PhysicsLayers3D.Obstacles);
    ```
 
 2. Center raycast - getting raycast result from the center of the viewport to specified physics layers
 
    ```csharp
-   var hit = GetViewport().GetMouseRaycast(PhysicsLayers.Player | PhysicsLayers.Enemy);
+   var hit = GetViewport().GetMouseRaycast(PhysicsLayers3D.Player | PhysicsLayers3D.Enemy);
    ```

@@ -12,7 +12,7 @@ public partial class Node3DExtensionsTest : Node {
     private Random _rand = new();
 
     public override async void _Ready() {
-        this.Resolve();
+        this.ResolveNodePaths();
 
         await Task.Delay(TimeSpan.FromSeconds(10));
         SetProcess(false);

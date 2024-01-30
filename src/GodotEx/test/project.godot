@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GodotEx.Tests"
-run/main_scene="res://LayerTest/LayerTest.tscn"
+run/main_scene="res://BitFlagsTest/BitFlagsTest.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,7 +21,9 @@ project/assembly_name="GodotEx.Tests"
 
 [layer_names]
 
-3d_physics/layer_1="Ground"
-3d_physics/layer_2="Player"
-3d_physics/layer_3="Enemy"
-3d_physics/layer_4="Obstacle"
+3d_render/layer_1="Player"
+3d_render/layer_2="Enemy"
+3d_physics/layer_1="Player"
+3d_physics/layer_2="Melee"
+3d_physics/layer_3="Projectile"
+3d_physics/layer_4="Ground"

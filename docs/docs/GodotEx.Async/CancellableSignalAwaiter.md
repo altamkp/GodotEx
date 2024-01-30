@@ -32,7 +32,7 @@ public partial class RailGun : Node3D {
 }
 ```
 
-> [!Note]
+> [!Tip]
 > The `CountdownAsync(int)` method uses the task asynchronous programming [(TAP)](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/task-asynchronous-programming-model) model which allows the writing of asynchronous codes that look synchronous, by enabling code to be written and executed in a top-down manner. Callback and event based asynchronous models would also lead to the same result but would cause problems such as stack overflow if the operation completes synchronously. You can read more on [C# async/await](https://devblogs.microsoft.com/dotnet/how-async-await-really-works/) if you like, but this is outside the scope of this documentation.
 
 There is one missing part to the `ToSignal()` functionality provided with Godot, which is cancellation. Taking the above as example, you may want to stop and reset the countdown any time because some conditions are met, events are triggered, etc.

@@ -100,6 +100,6 @@ The `Host` node comes with a number of default services with `base.ConfigureServ
 
 1. Current host registered by its concrete type
 2. [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html)
-3. `DependencyInjector` - responsible for injecting dependencies to classes derived from `Node`
-4. `NodePathResolver` - responsible for resolving node dependencies declared by the [[NodePath]](~/docs/GodotEx/ResolvingNodeDependencies.md) attribute
+3. `DependencyInjector` - responsible for injecting dependencies labeled by the [[Inject]] attribute to classes derived from `Node`
+4. `NodeResolver` - responsible for resolving nodes that define the [[NodePath]](~/docs/GodotEx/ResolvingNodeDependencies.md) attribute or [[Layer]/[Mask]](~/docs/GodotEx/ResolvingBitFlags.md) attributes
 5. `SingleNodeManager` - responsible for adding and removing nodes labeled with the [[SingleNode]](~/docs/GodotEx/SingleNodes.md) attribute to the `SceneTree` as single nodes

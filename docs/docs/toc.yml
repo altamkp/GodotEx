@@ -6,6 +6,8 @@
       href: GodotEx/BasicExtensions.md
     - name: Resolving node dependencies
       href: GodotEx/ResolvingNodeDependencies.md
+    - name: Resolving bit flags
+      href: GodotEx/ResolvingBitFlags.md
     - name: Instantiating packed scenes
       href: GodotEx/InstantiatingPackedScenes.md
     - name: Single nodes

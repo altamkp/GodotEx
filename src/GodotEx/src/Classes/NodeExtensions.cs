@@ -1,4 +1,5 @@
 using Godot;
+using System.Reflection;
 
 namespace GodotEx;
 
@@ -6,6 +7,40 @@ namespace GodotEx;
 /// Extensions for <see cref="Node"/>.
 /// </summary>
 public static partial class NodeExtensions {
+    private const BindingFlags INSTANCE_FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+    private const BindingFlags PUBLIC_INSTANCE_FLAGS = BindingFlags.Instance | BindingFlags.Public;
+
+    private const string RESOLVED = "resolved";
+
+    /// <summary>
+    /// Checks if the dependencies of <paramref name="node"/> labeled by 
+    /// <see cref="NodePathAttribute"/> has been resolved. Note that nodes created
+    /// by <see cref="GDx.New{T}(Action{T}?)"/> and its overload methods automatically resolves
+    /// the node as soon as it is instantiated.
+    /// </summary>
+    /// <param name="node"></param>
+    /// <returns></returns>
+    public static bool IsResolved(this Node node) {
+        return node.TryGetMeta(RESOLVED, out bool resolved) && resolved;
+    }
+
+    /// <summary>
+    /// Resolve <paramref name="node"/> the node's node paths, layers and masks.
+    /// See <see cref="ResolveNodePaths(Node)"/> and <see cref="ResolveBitFlags(Node)"/>.
+    /// Resolving more than once has no effect and finishes in time O(1);
+    /// </summary>
+    /// <param name="node">Node to resolve.</param>
+    public static void Resolve(this Node node) {
+        if (node.IsResolved()) {
+            return;
+        }
+
+        node.ResolveNodePaths();
+        node.ResolveBitFlags();
+
+        node.SetMeta(RESOLVED, true);
+    }
+
     /// <summary>
     /// Returns all children of type <typeparamref name="T"/> under <paramref name="node"/>.
     /// </summary>

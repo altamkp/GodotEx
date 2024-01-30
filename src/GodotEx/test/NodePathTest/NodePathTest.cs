@@ -19,7 +19,7 @@ public partial class NodePathTest : Node {
     public Label Label { get; set; }
 
     public override void _Ready() {
-        this.Resolve();
+        this.ResolveNodePaths();
 
         var type = GetType();
         var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;

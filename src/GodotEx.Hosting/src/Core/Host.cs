@@ -12,7 +12,7 @@ namespace GodotEx.Hosting;
 /// <br/>Current <see cref="Host"/>
 /// <br/><see cref="SceneTree"/>
 /// <br/><see cref="DependencyInjector"/>
-/// <br/><see cref="NodePathResolver"/>
+/// <br/><see cref="NodeResolver"/>
 /// <br/><see cref="SingleNodeManager"/>
 /// </summary>
 /// <remarks>
@@ -105,7 +105,7 @@ public abstract partial class Host : Node {
         services.AddSingleton(GetType(), this);
         services.AddSingleton(GetTree());
         services.AddSingleton<DependencyInjector>();
-        services.AddSingleton<NodePathResolver>();
+        services.AddSingleton<NodeResolver>();
         services.AddSingleton<SingleNodeManager>();
     }
 }
