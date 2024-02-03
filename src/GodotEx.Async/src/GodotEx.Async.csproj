@@ -9,7 +9,7 @@
         <PackageProjectUrl>https://altamkp.github.io/GodotEx/docs/GodotEx.Async</PackageProjectUrl>
 
         <LangVersion>11.0</LangVersion>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <IsPackable>true</IsPackable>
         <OutputType>Library</OutputType>
         <PackageReadmeFile>README.md</PackageReadmeFile>

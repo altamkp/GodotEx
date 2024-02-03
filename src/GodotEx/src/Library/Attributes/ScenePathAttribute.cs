@@ -1,4 +1,5 @@
 using Godot;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace GodotEx;
@@ -33,8 +34,6 @@ namespace GodotEx;
 /// </remarks>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
 public class ScenePathAttribute : Attribute {
-    private const string TSCN = ".tscn";
-
     private readonly string _scriptPath;
     private string? _scenePath;
 
@@ -55,8 +54,24 @@ public class ScenePathAttribute : Attribute {
     /// </summary>
     public string Path {
         get {
-            _scenePath ??= ProjectSettings.LocalizePath(System.IO.Path.ChangeExtension(_scriptPath, TSCN));
+            _scenePath ??= BuildScenePath();
             return _scenePath;
         }
+    }
+
+    private string BuildScenePath() {
+        const string COMPILE_ROOT = "CompileRoot";
+
+        var compileRoot = GDx.Config?[COMPILE_ROOT]
+            ?? throw new InvalidOperationException($"CompileRoot not provided in config.json.");
+
+        int index;
+        for (index = 0; index < compileRoot.Length; index++) {
+            if (_scriptPath[index] != compileRoot[index]) {
+                throw new InvalidOperationException($"Script path root {_scriptPath} does not match compile root {compileRoot}.");
+            }
+        }
+
+        return $"res://{_scriptPath[(index + 1)..^3]}.tscn";
     }
 }

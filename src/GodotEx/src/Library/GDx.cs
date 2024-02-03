@@ -1,5 +1,7 @@
 using Godot;
+using Microsoft.Extensions.Configuration;
 using System.Reflection;
+using FileAccess = Godot.FileAccess;
 
 namespace GodotEx;
 
@@ -7,6 +9,21 @@ namespace GodotEx;
 /// GodotEx's global functions.
 /// </summary>
 public static class GDx {
+    static GDx() {
+        const string PATH = "res://config.json";
+
+        var exists = FileAccess.FileExists(PATH);
+        if (exists) {
+            var config = new MemoryStream(FileAccess.GetFileAsBytes(PATH));
+            Config = new ConfigurationBuilder().AddJsonStream(config).Build();
+        }
+    }
+
+    /// <summary>
+    /// Global access to config.json.
+    /// </summary>
+    public static IConfiguration Config { get; private set; }
+
     /// <summary>
     /// Instantiates node from packed scene using its <paramref name="path"/>.
     /// Nodes are automatically resolved using this method, see <see cref="NodeExtensions.ResolveNodePaths(Node)"/>.
