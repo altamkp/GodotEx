@@ -10,7 +10,6 @@
 
         <LangVersion>11.0</LangVersion>
         <TargetFramework>net7.0</TargetFramework>
-    <CodeAnalysisRuleSet>c:\Alex\Godot\GodotEx\.vscode\ruleset.xml</CodeAnalysisRuleSet>
         <IsPackable>true</IsPackable>
         <OutputType>Library</OutputType>
         <PackageReadmeFile>README.md</PackageReadmeFile>

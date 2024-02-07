@@ -18,6 +18,8 @@
       href: GodotEx/Directions.md
     - name: Input handling
       href: GodotEx/InputHandling.md
+    - name: Managing in-game settings
+      href: GodotEx/ManagingInGameSettings.md
 - name: GodotEx.Async
   expanded: true
   href: GodotEx.Async/index.md

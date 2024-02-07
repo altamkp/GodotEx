@@ -1,5 +1,7 @@
 # Instantiating Packed Scenes
 
+## Problems
+
 From time to time, you would need to instantiate packed scenes and cast them to a target type in order to use them.
 
 Let's say you have a project structure as follows:
@@ -12,6 +14,8 @@ The official way requires a lot of redundant code:
 var playerScene = GD.Load<PackedScene>("res://Path/To/Player.tscn");
 var player = playerScene.Instantiate<Player>();
 ```
+
+## Solution
 
 With the `GDx` utilities, you can instantiate packed scenes a lot easier in a few different ways:
 

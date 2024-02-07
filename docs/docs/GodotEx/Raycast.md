@@ -1,6 +1,6 @@
 # Raycast
 
-## Introduction
+## Problems
 
 Let's say you need to use raycast and after following the official [documentation](https://docs.godotengine.org/en/stable/tutorials/physics/ray-casting.htm) you end up with this code:
 
@@ -11,6 +11,8 @@ var result = spaceState.IntersectRay(query);
 ```
 
 The `result` from a raycast query is of type [Godot.Collections.Dictionary](https://docs.godotengine.org/en/stable/tutorials/physics/ray-casting.html#:~:text=The%20result%20is%20a%20dictionary). While flexible, we would almost certainly need to access one or more of its properties.
+
+## Solution
 
 Instead of writing:
 

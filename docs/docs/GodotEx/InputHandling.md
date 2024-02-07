@@ -1,6 +1,6 @@
 # Input Handling
 
-## Input Manager
+## Problems
 
 Handling input in Godot requires large amount of code that checks for certain conditions. Let's say you have a UI node that handle shortcuts and shows a tooltip that follows the mouse's position:
 
@@ -37,6 +37,8 @@ public partial class Display : Control {
     }
 }
 ```
+
+## Solution
 
 With `InputManager` and the use of some input related [extension](BasicExtensions.md) methods, the clarity of the relationships between input events and their corresponding callbacks are by far more explicit:
 

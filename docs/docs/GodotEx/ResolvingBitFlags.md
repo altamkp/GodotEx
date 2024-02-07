@@ -1,6 +1,6 @@
 # Resolving Bit Flags
 
-## Introduction
+## Problems
 
 In the Project Settings window, we can set the names of several physics, render and navigation layers.
 
@@ -8,9 +8,9 @@ In the Project Settings window, we can set the names of several physics, render 
 
 There often comes a time when we want to modify the list of layer names by either inserting a new layer, swapping around 2 layers, etc. Doing so break our game since these settings are static, which then requires us to open up all the scenes involved to change the layers or masks properties manually one by one.
 
-By using the `[BitFlags]` attributes, you do not need to worry about breaking the game when you change your layers.
+## Solution
 
-## How-to
+By using the `[BitFlags]` attributes, you do not need to worry about breaking the game when you change your layers.
 
 Let's say you have the following scene which represents your character (note that collision shapes are omitted for demonstration):
 
