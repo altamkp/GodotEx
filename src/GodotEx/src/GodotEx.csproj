@@ -8,8 +8,8 @@
         <RepositoryUrl>https://github.com/altamkp/GodotEx</RepositoryUrl>
         <PackageProjectUrl>https://altamkp.github.io/GodotEx/docs/GodotEx</PackageProjectUrl>
 
-        <LangVersion>11.0</LangVersion>
-        <TargetFramework>net7.0</TargetFramework>
+        <LangVersion>10.0</LangVersion>
+        <TargetFramework>net6.0</TargetFramework>
         <IsPackable>true</IsPackable>
         <OutputType>Library</OutputType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
