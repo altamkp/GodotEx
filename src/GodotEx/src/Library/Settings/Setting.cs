@@ -16,11 +16,12 @@ public class Setting<[MustBeVariant] T> where T : notnull {
     private readonly Func<T, bool> _predicate;
 
     private T _value;
-
+    
     internal Setting(string section, string key, T @default, Action<T> setter, Func<T, bool>? predicate = null) {
         Section = section;
         Key = key;
         _value = @default;
+        Default = @default;
 
         _setter = setter;
         _predicate = predicate ?? TRUE;
@@ -55,4 +56,9 @@ public class Setting<[MustBeVariant] T> where T : notnull {
             Updated(_value);
         }
     }
+
+    /// <summary>
+    /// Default value of the setting.
+    /// </summary>
+    public T Default { get; }
 }
