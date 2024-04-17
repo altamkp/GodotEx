@@ -77,8 +77,10 @@ public static partial class NodeExtensions {
     /// <param name="node">Node to search.</param>
     /// <returns>All descendants matching <typeparamref name="T"/>.</returns>
     public static IEnumerable<T> GetDescendants<T>(this Node node) where T : Node {
-        foreach (var child in node.GetChildren<T>()) {
-            yield return child;
+        foreach (var child in node.GetChildren()) {
+            if (child is T t) {
+                yield return t;
+            }
 
             foreach (var descendant in child.GetDescendants<T>()) {
                 yield return descendant;

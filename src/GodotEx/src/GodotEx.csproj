@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <PackageId>GodotEx</PackageId> 
+        <PackageId>GodotEx</PackageId>
         <Authors>altamkp</Authors>
         <Company>altamkp</Company>
         <PackageDescription>Extension library for Godot in C#.</PackageDescription>
@@ -29,6 +29,6 @@
 
     <ItemGroup>
         <None Include="README.md" Pack="true" PackagePath="\" />
-     </ItemGroup>
+    </ItemGroup>
 
 </Project>

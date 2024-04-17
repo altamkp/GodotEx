@@ -58,10 +58,10 @@ public class ScenePathAttribute : Attribute {
     }
 
     private string BuildScenePath() {
-        const string COMPILE_ROOT = "CompileRoot";
+        const string COMPILE_ROOT = "compileRoot";
 
         var compileRoot = GDx.Config?[COMPILE_ROOT]
-            ?? throw new InvalidOperationException($"CompileRoot not provided in config.json.");
+            ?? throw new InvalidOperationException($"'compileRoot' not provided in config.json.");
 
         int index;
         for (index = 0; index < compileRoot.Length; index++) {
