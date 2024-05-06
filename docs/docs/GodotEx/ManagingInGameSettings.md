@@ -112,3 +112,20 @@ The update executes in the following steps:
 3. Performs `setter` action
 4. Fires the `Updated` event is fired, notifying any subscribers
 5. Updates the config file
+   
+## Usage with `GodotEx.Hosting.Host`
+
+It is **highly recommended** to use the `SettingsServer` with `GodotEx.Hosting.Host` which makes use of dependency injection for acquire the `SettingsServer` instance. Read more about hosting in [GodotEx.Hosting](~/docs/GodotEx.Hosting/Hosting.md).
+
+```csharp
+public partial class AppHost : Host {
+    protected override void ConfigureServices(IServiceCollection services) {
+        base.ConfigureServices(services);
+
+        var settingsServer = new SettingsServerBuilder()
+            // .With()
+            .Build();
+        services.AddSingleton(settingsServer);
+    }
+}
+```
