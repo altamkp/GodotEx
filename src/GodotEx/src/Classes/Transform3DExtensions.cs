@@ -39,12 +39,12 @@ public static class Transform3DExtensions {
     /// </summary>
     /// <param name="transform">Transform to use.</param>
     /// <returns>Unit vector pointing forward.</returns>
-    public static Vector3 Forward(this Transform3D transform) => transform.Basis.Z;
+    public static Vector3 Forward(this Transform3D transform) => -transform.Basis.Z;
 
     /// <summary>
     /// Returns the unit vector pointing back relative to the transform object.
     /// </summary>
     /// <param name="transform">Transform to use.</param>
     /// <returns>Unit vector pointing back.</returns>
-    public static Vector3 Back(this Transform3D transform) => -transform.Basis.Z;
+    public static Vector3 Back(this Transform3D transform) => transform.Basis.Z;
 }
