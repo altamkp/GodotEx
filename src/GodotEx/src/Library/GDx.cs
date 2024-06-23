@@ -65,9 +65,8 @@ public static class GDx {
     /// <exception cref="InvalidOperationException"><see cref="ScenePathAttribute"/>
     /// not defined for type <paramref name="type"/>.</exception>
     public static Node New(Type type, Action<Node>? setup = null) {
-        var attribute = type.GetCustomAttribute<ScenePathAttribute>()
-            ?? throw new InvalidOperationException($"ScenePath attribute not defined for {type.Name}.");
-        var node = GD.Load<PackedScene>(attribute.Path).Instantiate();
+        var attribute = type.GetCustomAttribute<ScenePathAttribute>();
+        var node = attribute == null ? (Node)Activator.CreateInstance(type)! : GD.Load<PackedScene>(attribute.Path).Instantiate();
         node.ResolveNodePaths();
         setup?.Invoke(node);
         return node;
@@ -86,9 +85,8 @@ public static class GDx {
     /// not defined for type <typeparamref name="T"/>.</exception>
     public static T New<T>(Action<T>? setup = null) where T : Node {
         var type = typeof(T);
-        var attribute = type.GetCustomAttribute<ScenePathAttribute>()
-            ?? throw new InvalidOperationException($"ScenePath attribute not defined for {type.Name}.");
-        var node = GD.Load<PackedScene>(attribute.Path).Instantiate<T>();
+        var attribute = type.GetCustomAttribute<ScenePathAttribute>();
+        var node = attribute == null ? Activator.CreateInstance<T>() : GD.Load<PackedScene>(attribute.Path).Instantiate<T>();
         node.ResolveNodePaths();
         setup?.Invoke(node);
         return node;
