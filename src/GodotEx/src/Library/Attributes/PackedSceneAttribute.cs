@@ -1,3 +1,4 @@
+using Godot;
 using System.Runtime.CompilerServices;
 
 namespace GodotEx;
@@ -31,45 +32,21 @@ namespace GodotEx;
 /// By providing a path, the attribute looks for the tscn file at the given path. 
 /// </remarks>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-public class ScenePathAttribute : Attribute {
-    private readonly string _scriptPath;
+public class PackedSceneAttribute : Attribute {
     private string? _scenePath;
 
     /// <summary>
-    /// Creates a new <see cref="ScenePathAttribute"/> used with <see cref="GDx.New{T}(Action{T}?)"/>
+    /// Creates a new <see cref="PackedSceneAttribute"/> used with <see cref="GDx.New{T}(Action{T}?)"/>
     /// and similar overloads to instantiate scenes.
     /// </summary>
     /// <param name="scenePath">Scene path.</param>
-    /// <param name="scriptPath">Script path.</param>
     /// <exception cref="InvalidOperationException">Scene file not found.</exception>
-    public ScenePathAttribute(string? scenePath = null, [CallerFilePath] string scriptPath = "") {
+    public PackedSceneAttribute(string? scenePath = null) {
         _scenePath = scenePath;
-        _scriptPath = scriptPath;
     }
 
     /// <summary>
     /// File path of the scene with the annotated script attached.
     /// </summary>
-    public string Path {
-        get {
-            _scenePath ??= BuildScenePath();
-            return _scenePath;
-        }
-    }
-
-    private string BuildScenePath() {
-        const string COMPILE_ROOT = "compileRoot";
-
-        var compileRoot = GDx.Config?[COMPILE_ROOT]
-            ?? throw new InvalidOperationException($"'compileRoot' not provided in config.json.");
-
-        int index;
-        for (index = 0; index < compileRoot.Length; index++) {
-            if (_scriptPath[index] != compileRoot[index]) {
-                throw new InvalidOperationException($"Script path root {_scriptPath} does not match compile root {compileRoot}.");
-            }
-        }
-
-        return $"res://{_scriptPath[(index + 1)..^3]}.tscn";
-    }
+    public string? ScenePath => _scenePath;
 }

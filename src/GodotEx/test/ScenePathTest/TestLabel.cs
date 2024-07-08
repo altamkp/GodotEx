@@ -2,5 +2,5 @@ using Godot;
 
 namespace GodotEx.Tests;
 
-[ScenePath]
+[PackedScene]
 public partial class TestLabel : Label { }

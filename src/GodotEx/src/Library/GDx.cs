@@ -56,17 +56,17 @@ public static class GDx {
     /// <summary>
     /// Instantiates node from packed scene by matching a tscn file with the same name 
     /// under the same folder as the script defining the target node, or using the path 
-    /// if it is provided. See <see cref="ScenePathAttribute"/>.
+    /// if it is provided. See <see cref="PackedSceneAttribute"/>.
     /// Nodes are automatically resolved using this method, see <see cref="NodeExtensions.ResolveNodePaths(Node)"/>.
     /// </summary>
     /// <param name="type">Node type.</param>
     /// <param name="setup">Setup action.</param>
     /// <returns>Instantiated node of type <paramref name="type"/>.</returns>
-    /// <exception cref="InvalidOperationException"><see cref="ScenePathAttribute"/>
+    /// <exception cref="InvalidOperationException"><see cref="PackedSceneAttribute"/>
     /// not defined for type <paramref name="type"/>.</exception>
     public static Node New(Type type, Action<Node>? setup = null) {
-        var attribute = type.GetCustomAttribute<ScenePathAttribute>();
-        var node = attribute == null ? (Node)Activator.CreateInstance(type)! : GD.Load<PackedScene>(attribute.Path).Instantiate();
+        var attribute = type.GetCustomAttribute<PackedSceneAttribute>();
+        var node = attribute == null ? (Node)Activator.CreateInstance(type)! : GD.Load<PackedScene>(attribute.ScenePath).Instantiate();
         node.ResolveNodePaths();
         setup?.Invoke(node);
         return node;
@@ -75,18 +75,18 @@ public static class GDx {
     /// <summary>
     /// Instantiates node from packed scene by matching a tscn file with the same name 
     /// under the same folder as the script defining the target node, or using the path 
-    /// if it is provided. See <see cref="ScenePathAttribute"/>.
+    /// if it is provided. See <see cref="PackedSceneAttribute"/>.
     /// Nodes are automatically resolved using this method, see <see cref="NodeExtensions.ResolveNodePaths(Node)"/>.
     /// </summary>
     /// <typeparam name="T">Node type.</typeparam>
     /// <param name="setup">Setup action.</param>
     /// <returns>Instantiated node of type <typeparamref name="T"/>.</returns>
-    /// <exception cref="InvalidOperationException"><see cref="ScenePathAttribute"/>
+    /// <exception cref="InvalidOperationException"><see cref="PackedSceneAttribute"/>
     /// not defined for type <typeparamref name="T"/>.</exception>
     public static T New<T>(Action<T>? setup = null) where T : Node {
         var type = typeof(T);
-        var attribute = type.GetCustomAttribute<ScenePathAttribute>();
-        var node = attribute == null ? Activator.CreateInstance<T>() : GD.Load<PackedScene>(attribute.Path).Instantiate<T>();
+        var attribute = type.GetCustomAttribute<PackedSceneAttribute>();
+        var node = attribute == null ? Activator.CreateInstance<T>() : GD.Load<PackedScene>(attribute.ScenePath).Instantiate<T>();
         node.ResolveNodePaths();
         setup?.Invoke(node);
         return node;
