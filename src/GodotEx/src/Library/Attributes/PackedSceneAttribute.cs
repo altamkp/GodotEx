@@ -33,8 +33,6 @@ namespace GodotEx;
 /// </remarks>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
 public class PackedSceneAttribute : Attribute {
-    private string? _scenePath;
-
     /// <summary>
     /// Creates a new <see cref="PackedSceneAttribute"/> used with <see cref="GDx.New{T}(Action{T}?)"/>
     /// and similar overloads to instantiate scenes.
@@ -42,11 +40,11 @@ public class PackedSceneAttribute : Attribute {
     /// <param name="scenePath">Scene path.</param>
     /// <exception cref="InvalidOperationException">Scene file not found.</exception>
     public PackedSceneAttribute(string? scenePath = null) {
-        _scenePath = scenePath;
+        ScenePath = scenePath;
     }
 
     /// <summary>
     /// File path of the scene with the annotated script attached.
     /// </summary>
-    public string? ScenePath => _scenePath;
+    public string? ScenePath { get; init; }
 }

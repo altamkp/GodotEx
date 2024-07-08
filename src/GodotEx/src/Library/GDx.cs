@@ -66,7 +66,7 @@ public static class GDx {
     /// not defined for type <paramref name="type"/>.</exception>
     public static Node New(Type type, Action<Node>? setup = null) {
         var attribute = type.GetCustomAttribute<PackedSceneAttribute>();
-        var node = attribute == null ? (Node)Activator.CreateInstance(type)! : GD.Load<PackedScene>(attribute.ScenePath).Instantiate();
+        var node = attribute == null ? (Node)Activator.CreateInstance(type)! : PackedSceneUtils.GetPackedScene(type).Instantiate();
         node.ResolveNodePaths();
         setup?.Invoke(node);
         return node;
@@ -86,7 +86,7 @@ public static class GDx {
     public static T New<T>(Action<T>? setup = null) where T : Node {
         var type = typeof(T);
         var attribute = type.GetCustomAttribute<PackedSceneAttribute>();
-        var node = attribute == null ? Activator.CreateInstance<T>() : GD.Load<PackedScene>(attribute.ScenePath).Instantiate<T>();
+        var node = attribute == null ? Activator.CreateInstance<T>() : PackedSceneUtils.GetPackedScene(type).Instantiate<T>();
         node.ResolveNodePaths();
         setup?.Invoke(node);
         return node;
