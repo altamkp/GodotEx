@@ -1,11 +1,11 @@
 using DotEx.Reflections;
 using Godot;
+using Microsoft.Extensions.Hosting;
 using System.Reflection;
 
 namespace GodotEx.Hosting;
 
-[Eager]
-internal class DependencyInjector : IDisposable {
+internal class DependencyInjector : IHostedService, IDisposable {
     private const BindingFlags BINDING_FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
     private readonly SceneTree _sceneTree;
@@ -16,6 +16,9 @@ internal class DependencyInjector : IDisposable {
         _sceneTree = sceneTree;
         _sceneTree.NodeAdded += Inject;
     }
+
+    public Task StartAsync(CancellationToken _) => Task.CompletedTask;
+    public Task StopAsync(CancellationToken _) => Task.CompletedTask;
 
     public void Dispose() {
         _sceneTree.NodeAdded -= Inject;
@@ -33,7 +36,7 @@ internal class DependencyInjector : IDisposable {
 
         foreach (var member in members) {
             var memberType = member.GetMemberType();
-            var service = node.GetHost()?.GetService(memberType)
+            var service = Host.ServiceProvider.GetService(memberType)
                 ?? throw new InvalidOperationException($"Service of type {memberType} not found.");
             member.SetValue(node, service);
         }
